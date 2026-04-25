@@ -51,7 +51,7 @@ const getImageUrl = (post: SitePost, content: ListingContent) => {
   const contentLogo = typeof contentAny.logo === 'string' ? contentAny.logo : null
   if (contentLogo) return contentLogo
 
-  return '/placeholder.svg?height=640&width=960'
+  return '/site-media/freepik-main.png'
 }
 
 const cardStyles = {
@@ -81,7 +81,10 @@ const cardStyles = {
   },
 } as const
 
-const getVariantForTask = (taskKey: TaskKey) => SITE_THEME.cards[taskKey] || 'listing-elevated'
+const getVariantForTask = (taskKey: TaskKey) => {
+  if (taskKey === 'mediaDistribution') return 'editorial-feature'
+  return SITE_THEME.cards[taskKey] || 'listing-elevated'
+}
 
 export function TaskPostCard({
   post,
@@ -106,7 +109,16 @@ export function TaskPostCard({
   const variant = taskKey || 'listing'
   const visualVariant = cardStyles[getVariantForTask(variant)]
   const isBookmarkVariant = variant === 'sbm' || variant === 'social'
-  const imageAspect = variant === 'image' ? 'aspect-[4/5]' : variant === 'article' ? 'aspect-[16/10]' : variant === 'pdf' ? 'aspect-[4/5]' : variant === 'classified' ? 'aspect-[16/11]' : 'aspect-[4/3]'
+  const imageAspect =
+    variant === 'image'
+      ? 'aspect-[4/5]'
+      : variant === 'article' || variant === 'mediaDistribution'
+        ? 'aspect-[16/10]'
+        : variant === 'pdf'
+          ? 'aspect-[4/5]'
+          : variant === 'classified'
+            ? 'aspect-[16/11]'
+            : 'aspect-[4/3]'
   const altText = `${post.title} ${category} ${variant === 'listing' ? 'business listing' : variant} image`
   const imageSizes = variant === 'article' ? '(max-width: 640px) 90vw, (max-width: 1024px) 48vw, 420px' : variant === 'image' ? '(max-width: 640px) 82vw, (max-width: 1024px) 34vw, 320px' : '(max-width: 640px) 85vw, (max-width: 1024px) 42vw, 340px'
 

@@ -53,7 +53,7 @@ export function ArticleCard({ article, featured = false }: { article: Article; f
             featured ? 'aspect-[16/9] sm:aspect-[2/1]' : 'aspect-video'
           )}>
             <Image
-              src={article.coverImage || '/placeholder.svg?height=720&width=1280'}
+              src={article.coverImage || '/site-media/freepik-main.png'}
               alt={article.title}
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-105"

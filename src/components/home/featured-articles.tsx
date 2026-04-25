@@ -48,7 +48,7 @@ export function FeaturedArticles() {
             >
               <div className="relative aspect-[16/9] overflow-hidden">
                 <Image
-                  src={hero.coverImage || '/placeholder.svg?height=720&width=1280'}
+                  src={hero.coverImage || '/site-media/freepik-main.png'}
                   alt={hero.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
@@ -133,7 +133,7 @@ export function FeaturedArticles() {
               >
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <Image
-                    src={article!.coverImage || '/placeholder.svg?height=640&width=960'}
+                    src={article!.coverImage || '/site-media/freepik-main.png'}
                     alt={article!.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"

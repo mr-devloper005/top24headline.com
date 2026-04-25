@@ -1,7 +1,7 @@
 import { ContentImage } from "@/components/shared/content-image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MapPin, Globe, Phone, Tag, Mail } from "lucide-react";
+import { MapPin, Globe, Phone, Tag, Mail, Facebook, Linkedin, Twitter } from "lucide-react";
 import { NavbarShell } from "@/components/shared/navbar-shell";
 import { Footer } from "@/components/shared/footer";
 import { TaskPostCard } from "@/components/shared/task-post-card";
@@ -74,7 +74,7 @@ const getImageUrls = (post: SitePost, content: PostContent) => {
   const merged = [...mediaImages, ...contentImages];
   if (merged.length) return merged;
   if (isValidImageUrl(content.logo)) return [content.logo as string];
-  return ["/placeholder.svg?height=900&width=1400"];
+  return ["/site-media/freepik-main.png"];
 };
 
 const toNumber = (value?: number | string) => {
@@ -142,7 +142,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
 
   const content = getContent(post);
   const isClassified = task === "classified";
-  const isArticle = task === "article";
+  const isArticle = task === "article" || task === "mediaDistribution";
   const category = content.category || post.tags?.[0] || taskConfig?.label || task;
   const description = content.description || post.summary || "Details coming soon.";
   const descriptionHtml = !isArticle ? formatRichHtml(description, "Details coming soon.") : "";
@@ -267,10 +267,16 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
         >
           <div className={cn(isClassified ? "space-y-8" : "")}>
             {isArticle ? (
-              <div className="mx-auto w-full max-w-4xl space-y-6">
+              <article className="mx-auto w-full max-w-4xl space-y-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_48px_rgba(15,23,42,0.1)] sm:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#F5004F]">
+                  Press Release
+                </p>
                 <h1 className="text-4xl font-semibold leading-tight text-foreground">
                   {post.title}
                 </h1>
+                {articleSummary ? (
+                  <p className="text-lg leading-8 text-slate-600">{articleSummary}</p>
+                ) : null}
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
                   <span>By {articleAuthor}</span>
                   {articleDate ? <span>{articleDate}</span> : null}
@@ -288,9 +294,6 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                     ))}
                   </div>
                 ) : null}
-                {articleSummary ? (
-                  <p className="text-base leading-7 text-muted-foreground">{articleSummary}</p>
-                ) : null}
                 {images[0] ? (
                   <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-border bg-muted">
                     <ContentImage
@@ -304,8 +307,23 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                   </div>
                 ) : null}
                 <RichContent html={articleHtml} className="leading-8 prose-p:my-6 prose-h2:my-8 prose-h3:my-6 prose-ul:my-6" />
+                <div className="flex flex-wrap items-center gap-2 border-t border-slate-200 pt-4">
+                  <span className="mr-2 text-sm font-semibold text-slate-700">Share:</span>
+                  <Link href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}`} target="_blank" className="inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">
+                    <Twitter className="h-3.5 w-3.5" />
+                    Twitter
+                  </Link>
+                  <Link href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`} target="_blank" className="inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">
+                    <Facebook className="h-3.5 w-3.5" />
+                    Facebook
+                  </Link>
+                  <Link href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`} target="_blank" className="inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">
+                    <Linkedin className="h-3.5 w-3.5" />
+                    LinkedIn
+                  </Link>
+                </div>
                 <ArticleComments slug={post.slug} />
-              </div>
+              </article>
             ) : null}
 
             {!isArticle ? (

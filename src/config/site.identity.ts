@@ -1,10 +1,10 @@
 export const siteIdentity = {
   code: process.env.NEXT_PUBLIC_SITE_CODE || 'e1qxc7k6ca',
   name: process.env.NEXT_PUBLIC_SITE_NAME || 'Top 24 Headline',
-  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Independent media updates',
+  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Media press release network',
   description:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
-    'A simple newsroom-style publication for announcements, coverage, and media updates on Top 24 Headline.',
+    'Top24Headline is a media distribution platform for press releases, newsroom announcements, and digital publisher reach.',
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'top24headline.com',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://top24headline.com',
   ogImage: process.env.NEXT_PUBLIC_SITE_OG_IMAGE || '/og-default.png',
@@ -13,5 +13,5 @@ export const siteIdentity = {
 
 export const defaultAuthorProfile = {
   name: siteIdentity.name,
-  avatar: '/placeholder.svg?height=80&width=80',
+  avatar: '/site-media/freepik-main.png',
 } as const

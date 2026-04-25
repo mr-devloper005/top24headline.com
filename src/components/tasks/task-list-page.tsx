@@ -40,7 +40,19 @@ const variantShells = {
   'sbm-library': 'bg-[linear-gradient(180deg,#f7f8fc_0%,#ffffff_100%)]',
 } as const
 
-export async function TaskListPage({ task, category }: { task: TaskKey; category?: string }) {
+export async function TaskListPage({
+  task,
+  category,
+  searchQuery,
+  dateFilter,
+  basePath,
+}: {
+  task: TaskKey
+  category?: string
+  searchQuery?: string
+  dateFilter?: string
+  basePath?: string
+}) {
   if (TASK_LIST_PAGE_OVERRIDE_ENABLED) {
     return await TaskListPageOverride({ task, category })
   }
@@ -85,6 +97,71 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
           input: 'border border-slate-200 bg-white text-slate-950',
           button: 'bg-slate-950 text-white hover:bg-slate-800',
         }
+
+  const listPath = basePath || taskConfig?.route || '/updates'
+
+  if (task === 'mediaDistribution') {
+    return (
+      <div className="min-h-screen bg-[#f8fbff]">
+        <NavbarShell />
+        <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <section className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#F5004F]">Latest News</p>
+              <h1 className="mt-3 text-5xl font-semibold tracking-[-0.05em] text-[#111827]">Press release newsroom</h1>
+              <p className="mt-4 max-w-2xl text-sm leading-8 text-slate-600">
+                Browse press releases in a scan-first newsroom grid with category and date filters.
+              </p>
+            </div>
+            <form
+              className="grid gap-3 rounded-3xl border border-slate-200 bg-white p-5 shadow-[0_15px_35px_rgba(15,23,42,0.08)]"
+              action={listPath}
+            >
+              <input
+                name="q"
+                defaultValue={searchQuery || ''}
+                className="h-11 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm"
+                placeholder="Search headlines or content"
+              />
+              <div className="grid gap-3 sm:grid-cols-2">
+                <select name="category" defaultValue={normalizedCategory} className="h-11 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm">
+                  <option value="all">All categories</option>
+                  {CATEGORY_OPTIONS.map((item) => (
+                    <option key={item.slug} value={item.slug}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  name="date"
+                  defaultValue={dateFilter || 'all'}
+                  className="h-11 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm"
+                >
+                  <option value="all">Any date</option>
+                  <option value="today">Today</option>
+                  <option value="7d">Last 7 days</option>
+                  <option value="30d">Last 30 days</option>
+                </select>
+              </div>
+              <button type="submit" className="h-11 rounded-full bg-[#0f2340] text-sm font-semibold text-white hover:bg-[#1f3557]">
+                Apply Filters
+              </button>
+            </form>
+          </section>
+
+          <TaskListClient
+            task={task}
+            initialPosts={posts}
+            category={normalizedCategory}
+            searchQuery={searchQuery}
+            dateFilter={dateFilter}
+            variant="newsroom"
+          />
+        </main>
+        <Footer />
+      </div>
+    )
+  }
 
   return (
     <div className={`min-h-screen ${shellClass}`}>
@@ -252,7 +329,13 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
           </section>
         ) : null}
 
-        <TaskListClient task={task} initialPosts={posts} category={normalizedCategory} />
+        <TaskListClient
+          task={task}
+          initialPosts={posts}
+          category={normalizedCategory}
+          searchQuery={searchQuery}
+          dateFilter={dateFilter}
+        />
       </main>
       <Footer />
     </div>

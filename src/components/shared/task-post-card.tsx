@@ -79,10 +79,16 @@ const cardStyles = {
     title: 'text-[#1f2617]',
     badge: 'bg-[#1f2617] text-[#edf5dc]',
   },
+  'newsroom-wire': {
+    frame: 'rounded-[1.8rem] border border-[#e5e5e8] bg-white shadow-[0_18px_55px_rgba(15,23,42,0.09)] hover:-translate-y-1 hover:shadow-[0_24px_65px_rgba(15,23,42,0.14)]',
+    muted: 'text-[#5f5f6f]',
+    title: 'text-[#1a1a1a]',
+    badge: 'bg-[#f04b23] text-white',
+  },
 } as const
 
 const getVariantForTask = (taskKey: TaskKey) => {
-  if (taskKey === 'mediaDistribution') return 'editorial-feature'
+  if (taskKey === 'mediaDistribution') return 'newsroom-wire'
   return SITE_THEME.cards[taskKey] || 'listing-elevated'
 }
 

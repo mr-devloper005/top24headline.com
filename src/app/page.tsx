@@ -3,16 +3,8 @@ import Link from 'next/link'
 import {
   ArrowRight,
   Check,
-  ChevronLeft,
-  ChevronRight,
-  FileText,
-  Megaphone,
-  PenLine,
-  Send,
-  Share2,
-  Target,
-  TrendingUp,
-  Users,
+  MessageSquare,
+  Plus,
 } from 'lucide-react'
 import { ContentImage } from '@/components/shared/content-image'
 import { NavbarShell } from '@/components/shared/navbar-shell'
@@ -64,85 +56,24 @@ export default async function HomePage() {
   const updatesRoute =
     SITE_CONFIG.tasks.find((task) => task.key === 'mediaDistribution')?.route || '/updates'
   const featuredUpdates = mediaDistributionPosts.slice(0, 6)
-
-  const pricingPlans = [
-    {
-      name: 'Silver',
-      price: '$79',
-      features: ['250+ publishers', 'SEO-friendly distribution', 'Basic analytics'],
-      logos: ['Google News', 'Yahoo', 'Bing'],
-      highlighted: false,
-    },
-    {
-      name: 'Gold',
-      price: '$149',
-      features: ['700+ premium outlets', 'Priority editorial review', 'Rich analytics dashboard'],
-      logos: ['Google News', 'Yahoo Finance', 'MSN'],
-      highlighted: true,
-    },
-    {
-      name: 'Platinum',
-      price: '$249',
-      features: ['1200+ placements', 'Media pickup tracking', 'Industry category targeting'],
-      logos: ['Benzinga', 'MarketWatch', 'AP News'],
-      highlighted: false,
-    },
-    {
-      name: 'Platinum Plus',
-      price: '$349',
-      features: ['Global media routing', 'White-glove support', 'Campaign consulting'],
-      logos: ['Reuters', 'Business Insider', 'Bloomberg'],
-      highlighted: false,
-    },
+  const heroPost = featuredUpdates[0]
+  const supportCards = featuredUpdates.slice(1, 3)
+  const freepikImages = [
+    'https://img.freepik.com/free-photo/group-diverse-people-having-business-meeting_53876-25060.jpg',
+    'https://img.freepik.com/free-photo/business-people-working-together-office_1303-22863.jpg',
+    'https://img.freepik.com/free-photo/close-up-people-working-office_23-2149300656.jpg',
+    'https://img.freepik.com/free-photo/businesswoman-giving-presentation-boardroom_23-2148146319.jpg',
+    'https://img.freepik.com/free-photo/modern-equipped-computer-lab_23-2149241213.jpg',
+    'https://img.freepik.com/free-photo/colleagues-working-project-discussing-details_114579-2817.jpg',
+    'https://img.freepik.com/free-photo/teamwork-concept-landing-page_23-2148248105.jpg',
+    'https://img.freepik.com/free-photo/business-team-meeting-boardroom_23-2148898716.jpg',
   ]
-
-  const benefits = [
-    {
-      icon: Megaphone,
-      title: 'Wider Visibility',
-      description: 'Distribute one release to broad media and publisher surfaces instantly.',
-    },
-    {
-      icon: Target,
-      title: 'Targeted Reach',
-      description: 'Route releases by industry and audience intent for better fit.',
-    },
-    {
-      icon: TrendingUp,
-      title: 'SEO Lift',
-      description: 'Build search presence through indexed press placement assets.',
-    },
-    {
-      icon: PenLine,
-      title: 'Editorial Support',
-      description: 'Get writing and structure guidance before publication goes live.',
-    },
-    {
-      icon: Share2,
-      title: 'Social Amplification',
-      description: 'Use one workflow for press publication and social distribution.',
-    },
-    {
-      icon: Users,
-      title: 'Brand Trust',
-      description: 'Showcase brand authority with consistent media distribution coverage.',
-    },
-    {
-      icon: Send,
-      title: 'Fast Turnaround',
-      description: 'Publish time-sensitive business updates without workflow delays.',
-    },
-    {
-      icon: FileText,
-      title: 'Detailed Reporting',
-      description: 'Track placements, clicks, and coverage footprint in one place.',
-    },
-  ]
-  const services = [
-    { title: 'PR Writing', icon: PenLine },
-    { title: 'Distribution', icon: Send },
-    { title: 'Target Audience', icon: Target },
-    { title: 'Marketing', icon: TrendingUp },
+  const industries = ['Finance', 'Team & Media', 'Public Relations', 'Energy & Science']
+  const faqItems = [
+    'How quickly can my release go live?',
+    'Can I target specific media categories?',
+    'Do you help with editorial review?',
+    'Will I receive a distribution summary report?',
   ]
 
   const schemaData = [
@@ -172,260 +103,191 @@ export default async function HomePage() {
       <NavbarShell />
       <SchemaJsonLd data={schemaData} />
       <main>
-        <section className="relative isolate overflow-hidden">
+        <section className="relative isolate overflow-hidden bg-[#0d0d0f] text-white">
           <div className="absolute inset-0">
-            <ContentImage
-              src="/site-media/freepik-home-hero.png"
-              alt="Press distribution hero background"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(6,16,38,0.9)_12%,rgba(245,0,79,0.72)_58%,rgba(255,175,0,0.64)_100%)]" />
+            <ContentImage src={freepikImages[0]} alt="Press distribution hero background" fill className="object-cover opacity-35" />
+            <div className="absolute inset-0 bg-black/65" />
           </div>
-          <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-            <div className="max-w-3xl">
-              <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-white/90">
-                Media Press Release Platform
-              </span>
-              <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
-                Send your news to thousands of digital publishers instantly
+          <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-20">
+            <div className="relative">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Press release distribution</p>
+              <h1 className="mt-4 max-w-xl text-4xl font-semibold leading-tight tracking-[-0.04em] sm:text-5xl">
+                Distribute press releases with a newsroom that feels premium, not generic.
               </h1>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-white/85">
-                Publish brand announcements, product launches, and company stories through a high-velocity media distribution workflow designed for modern PR teams.
+              <p className="mt-4 max-w-xl text-sm leading-7 text-white/80">
+                Launch coverage-ready stories with clean editorial structure, faster approvals, and reliable syndication across modern media surfaces.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href={updatesRoute}
-                  className="inline-flex items-center gap-2 rounded-full bg-[#FFAF00] px-6 py-3 text-sm font-semibold text-[#101828] transition hover:-translate-y-0.5 hover:bg-[#ffc03b]"
-                >
-                  Submit Now
-                  <ArrowRight className="h-4 w-4" />
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link href={updatesRoute} className="inline-flex items-center gap-2 bg-[#f04b23] px-8 py-3 text-sm font-semibold text-white hover:bg-[#db3e18]">
+                  Start now
                 </Link>
-                <Link
-                  href="/pricing"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
-                >
-                  View Plans
+                <Link href="/pricing" className="inline-flex items-center gap-2 border border-white/40 bg-transparent px-8 py-3 text-sm font-semibold text-white/90 hover:bg-white/10">
+                  View pricing
                 </Link>
               </div>
             </div>
+            <article className="relative rounded-2xl border border-white/10 bg-black/35 p-4 backdrop-blur-sm">
+              <div className="relative h-52 overflow-hidden rounded-xl">
+                <ContentImage src={freepikImages[1]} alt={heroPost?.title || 'Featured update'} fill className="object-cover" />
+              </div>
+              <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">Featured release</p>
+              <h2 className="mt-2 line-clamp-2 text-lg font-semibold">{heroPost?.title || 'Distribution update from our desk'}</h2>
+              <Link href={heroPost ? `${updatesRoute}/${heroPost.slug}` : updatesRoute} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#f37452]">
+                Read release
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </article>
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="mb-8 flex items-end justify-between gap-4">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#F5004F]">Pricing</p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#111827]">Choose your press distribution plan</h2>
-            </div>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {pricingPlans.map((plan) => (
-              <article
-                key={plan.name}
-                className={`rounded-3xl border p-6 transition duration-300 ${
-                  plan.highlighted
-                    ? 'scale-[1.02] border-[#F5004F] bg-[#fff6fa] shadow-[0_20px_60px_rgba(245,0,79,0.22)]'
-                    : 'border-slate-200 bg-white shadow-[0_16px_40px_rgba(15,23,42,0.08)] hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(15,23,42,0.12)]'
-                }`}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-2xl font-semibold">{plan.name}</h3>
-                  {plan.highlighted ? (
-                    <span className="rounded-full bg-[#F5004F] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-white">
-                      Popular
-                    </span>
-                  ) : null}
-                </div>
-                <p className="mt-4 text-4xl font-semibold text-[#111827]">{plan.price}</p>
-                <ul className="mt-5 space-y-2">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm text-slate-700">
-                      <Check className="mt-0.5 h-4 w-4 text-[#F5004F]" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {plan.logos.map((logo) => (
-                    <span key={logo} className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-600">
-                      {logo}
-                    </span>
-                  ))}
-                </div>
-                <Link
-                  href="/pricing"
-                  className={`mt-6 inline-flex w-full items-center justify-center rounded-full px-4 py-2.5 text-sm font-semibold ${
-                    plan.highlighted
-                      ? 'bg-[#F5004F] text-white hover:bg-[#d70044]'
-                      : 'bg-[#0f2340] text-white hover:bg-[#1f3557]'
-                  }`}
-                >
-                  Buy Now
-                </Link>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="bg-[#f9fafb] py-16">
+        <section className="bg-[#f5f5f7] py-14">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-semibold tracking-[-0.04em]">Every release includes powerful benefits</h2>
-            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {benefits.map((item) => (
-                <article key={item.title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                  <item.icon className="h-8 w-8 text-[#F5004F]" />
-                  <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-slate-600">{item.description}</p>
+            <h2 className="text-center text-2xl font-semibold tracking-[-0.03em] text-[#1e1e2b] sm:text-3xl">
+              An extension of your communications team
+            </h2>
+            <div className="mx-auto mt-8 grid max-w-4xl gap-5 sm:grid-cols-2">
+              {supportCards.map((post, index) => (
+                <article key={post.id} className="group overflow-hidden rounded-xl border border-[#e7e5f2] bg-white shadow-sm">
+                  <div className="relative h-44">
+                    <ContentImage src={freepikImages[index + 2]} alt={post.title} fill className="object-cover transition duration-500 group-hover:scale-[1.03]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#101012cc] to-transparent" />
+                    <h3 className="absolute bottom-3 left-3 right-3 line-clamp-2 text-base font-semibold text-white">{post.title}</h3>
+                  </div>
+                  <div className="px-3 pb-3 pt-2">
+                    <Link href={`${updatesRoute}/${post.slug}`} className="inline-flex rounded-full bg-[#f04b23] px-3 py-1 text-xs font-semibold text-white">
+                      Read story
+                    </Link>
+                  </div>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+        <section className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#F5004F]">About Top24Headline</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em]">Media-focused distribution with editorial quality control</h2>
-            <p className="mt-5 text-sm leading-8 text-slate-600">
-              Top24Headline is built for founders, PR teams, and agencies that need reliable publisher coverage without bloated workflows. We blend strong newsroom formatting with SaaS speed, so your releases stay readable and discoverable.
-            </p>
-            <p className="mt-4 text-sm leading-8 text-slate-600">
-              From planning to distribution and reporting, each stage is optimized for modern media publishing requirements.
-            </p>
-            <Link href="/about" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#F5004F]">
-              Learn more
-              <ArrowRight className="h-4 w-4" />
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7f7f8f]">Distribution workflow</p>
+            <h2 className="mt-3 max-w-md text-3xl font-semibold leading-tight tracking-[-0.03em] text-[#1d1d2c]">
+              Distribution that stays readable end-to-end
+            </h2>
+            <ul className="mt-6 space-y-3">
+              {[
+                'Editorial checks before publication',
+                'Structured formatting for modern newsrooms',
+                'Faster routing to partner channels',
+                'One dashboard for delivery updates',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-2 text-sm text-[#4d4c5f]">
+                  <Check className="h-4 w-4 text-[#f04b23]" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Link href={updatesRoute} className="mt-7 inline-flex bg-[#f04b23] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#db3e18]">
+              Explore newsroom
             </Link>
           </div>
-          <div className="relative min-h-[320px] overflow-hidden rounded-3xl border border-slate-200 shadow-[0_22px_50px_rgba(15,23,42,0.1)]">
-            <ContentImage src="/site-media/freepik-main.png" alt="Team meeting" fill className="object-cover" />
-          </div>
+          <article className="overflow-hidden rounded-2xl border border-[#e6e3f2] bg-white shadow-sm">
+            <div className="relative h-64">
+              <ContentImage src={freepikImages[4]} alt="Distribution preview" fill className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#111111d9] to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">Editorial first</p>
+                <p className="mt-2 text-lg font-semibold">Prepare content faster with cleaner press formatting.</p>
+              </div>
+            </div>
+          </article>
         </section>
 
-        <section className="relative overflow-hidden py-16">
-          <div className="absolute inset-0">
-            <ContentImage
-              src="/site-media/freepik-home-hero.png"
-              alt="Services background"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-[#0c1f3fe6]" />
-          </div>
-          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-center text-3xl font-semibold tracking-[-0.04em] text-white">Services</h2>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {services.map((item) => (
-                <article key={item.title} className="rounded-2xl border border-white/20 bg-white/10 p-5 text-white backdrop-blur-sm">
-                  <item.icon className="h-8 w-8 text-[#FFAF00]" />
-                  <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
+        <section className="bg-[#f5f5f7] py-14">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] text-[#1d1d2c]">Industry-ready presentation</h2>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {industries.map((industry, index) => (
+                <article key={industry} className="overflow-hidden rounded-xl border border-[#e8e6f2] bg-white shadow-sm">
+                  <div className="relative h-32">
+                    <ContentImage src={freepikImages[(index + 4) % freepikImages.length]} alt={industry} fill className="object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#111111b3] to-transparent" />
+                  </div>
+                  <div className="px-3 py-3">
+                    <p className="text-sm font-semibold text-[#252537]">{industry}</p>
+                  </div>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="border-y border-slate-200 bg-[#f3f4f6] py-10">
+        <section className="bg-[#f0f0f3] py-14">
+          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+            <div className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#1a1a1a] text-white">
+              <MessageSquare className="h-5 w-5" />
+            </div>
+            <h2 className="mt-4 text-2xl font-semibold text-[#1d1d2c]">Talk with our distribution desk</h2>
+            <p className="mt-2 text-sm text-[#64627a]">
+              Work with a team that understands media structure, not just upload forms.
+            </p>
+            <Link href="/contact" className="mt-6 inline-flex bg-[#f04b23] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#db3e18]">
+              Reach out today
+            </Link>
+          </div>
+        </section>
+
+        <section className="bg-[#f5f5f7] py-14">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 grayscale">
-              {['BBC', 'Forbes', 'Bloomberg', 'Yahoo', 'MSN', 'Business Insider', 'Reuters'].map((logo) => (
-                <span key={logo} className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-                  {logo}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between gap-3">
-            <h2 className="text-3xl font-semibold tracking-[-0.04em]">Trusted by growing brands</h2>
-            <div className="flex gap-2">
-              <button className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
-          </div>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {['StartUpHive', 'Northline Tech', 'FinEdge', 'RetailMint'].map((client) => (
-              <article key={client} className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
-                <p className="text-lg font-semibold text-slate-700">{client}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="bg-[#0f2340] py-16 text-white">
-          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-            <div className="relative mx-auto h-14 w-14 overflow-hidden rounded-full border border-white/20">
-              <ContentImage
-                src="/site-media/freepik-main.png"
-                alt="Testimonial avatar"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <h2 className="mt-6 text-3xl font-semibold tracking-[-0.04em]">What clients say</h2>
-            <p className="mt-5 text-base leading-8 text-slate-200">
-              “Top24Headline helped us land quality media pickup in less than 24 hours. The platform is fast, professional, and the reporting is exactly what our PR team needed.”
-            </p>
-            <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#FFAF00]">
-              Aisha Khan, Communications Lead
-            </p>
-          </div>
-        </section>
-
-        <section className="bg-[#F5004F] py-14">
-          <div className="mx-auto flex max-w-4xl flex-col gap-4 px-4 text-white sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-            <div>
-              <h2 className="text-3xl font-semibold tracking-[-0.04em]">Get media-ready updates in your inbox</h2>
-              <p className="mt-2 text-sm text-white/90">Weekly PR trends, editorial tips, and release strategy insights.</p>
-            </div>
-            <form className="flex w-full max-w-xl flex-col gap-3 sm:flex-row">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="h-12 flex-1 rounded-full border border-white/40 bg-white/15 px-5 text-sm text-white placeholder:text-white/75"
-              />
-              <button type="submit" className="h-12 rounded-full bg-[#FFAF00] px-6 text-sm font-semibold text-[#111827] transition hover:bg-[#ffc03b]">
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mb-6 flex items-end justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#F5004F]">Latest News</p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Recent press releases</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7f7f8f]">Recent press releases</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-[#1d1d2c]">Recent press releases</h2>
             </div>
-            <Link href={updatesRoute} className="text-sm font-semibold text-[#F5004F] hover:underline">
+            <Link href={updatesRoute} className="text-sm font-semibold text-[#f04b23] hover:underline">
               View all
             </Link>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {featuredUpdates.map((post) => (
-              <Link
-                key={post.id}
-                href={`${updatesRoute}/${post.slug}`}
-                className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_12px_36px_rgba(15,23,42,0.08)] transition hover:-translate-y-1"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <ContentImage src={getPostImage(post)} alt={post.title} fill className="object-cover transition duration-500 group-hover:scale-[1.04]" />
+          <div className="grid max-w-sm gap-5">
+            {featuredUpdates.slice(0, 1).map((post) => (
+              <Link key={post.id} href={`${updatesRoute}/${post.slug}`} className="group overflow-hidden rounded-xl border border-[#e6e4f1] bg-white shadow-sm">
+                <div className="relative h-40">
+                  <ContentImage src={freepikImages[7]} alt={post.title} fill className="object-cover transition duration-500 group-hover:scale-[1.03]" />
                 </div>
-                <div className="p-5">
-                  <h3 className="line-clamp-2 text-xl font-semibold">{post.title}</h3>
-                  <p className="mt-3 line-clamp-3 text-sm leading-7 text-slate-600">
-                    {post.summary || 'Press release coverage and editorial update.'}
-                  </p>
+                <div className="p-4">
+                  <h3 className="line-clamp-2 text-base font-semibold text-[#1f1f2f]">{post.title}</h3>
+                  <p className="mt-2 text-xs text-[#6b6a7c]">Read more</p>
                 </div>
               </Link>
             ))}
+          </div>
+          </div>
+        </section>
+
+        <section className="bg-white py-14">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6">
+            <h2 className="text-center text-2xl font-semibold text-[#1d1d2c]">Questions, answered</h2>
+            <div className="mt-6 divide-y divide-[#eceaf4] rounded-xl border border-[#eceaf4] bg-white">
+              {faqItems.map((item) => (
+                <div key={item} className="flex items-center justify-between px-4 py-3 text-sm text-[#3f3d54]">
+                  <span>{item}</span>
+                  <Plus className="h-4 w-4 text-[#8f8da4]" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#f5f5f7] py-14">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-center text-2xl font-semibold text-[#1d1d2c]">What communicators say</h2>
+            <div className="mt-7 grid gap-4 md:grid-cols-3">
+              {[
+                '“Simple interface, clean output, and really fast publishing turnaround.”',
+                '“The formatting quality makes our updates look like true newsroom pieces.”',
+                '“Distribution and reporting now happen in one predictable workflow.”',
+              ].map((quote) => (
+                <article key={quote} className="rounded-xl border border-[#e9e7f2] bg-white p-4 shadow-sm">
+                  <p className="text-sm leading-6 text-[#3f3d54]">{quote}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
       </main>

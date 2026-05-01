@@ -1,20 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Search, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { useAuth } from '@/lib/auth-context'
-import { SITE_CONFIG } from '@/lib/site-config'
 import { cn } from '@/lib/utils'
 import { NAVBAR_OVERRIDE_ENABLED, NavbarOverride } from '@/overrides/navbar'
-
-const NavbarAuthControls = dynamic(() => import('@/components/shared/navbar-auth-controls').then((mod) => mod.NavbarAuthControls), {
-  ssr: false,
-  loading: () => null,
-})
 
 export function Navbar() {
   if (NAVBAR_OVERRIDE_ENABLED) {
@@ -23,109 +15,102 @@ export function Navbar() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
-  const { isAuthenticated } = useAuth()
-  const releasesRoute =
-    SITE_CONFIG.tasks.find((task) => task.key === 'mediaDistribution')?.route || '/updates'
-  const navLinks = [
-    { key: 'home', name: 'Home', href: '/' },
-    { key: 'press-release', name: 'Press Release', href: releasesRoute },
+  const topLinks = [
     { key: 'about', name: 'About', href: '/about' },
-    { key: 'latest-news', name: 'Latest News', href: '/latest-news' },
+    { key: 'terms', name: 'Terms of Service', href: '/terms' },
+    { key: 'privacy', name: 'Privacy Policy', href: '/privacy' },
     { key: 'contact', name: 'Contact', href: '/contact' },
+  ]
+  const bottomLinks = [
+    { key: 'home', name: 'Home', href: '/' },
+    { key: 'contact-bottom', name: 'Contact', href: '/contact' },
   ]
 
   const isActiveLink = (href: string) =>
     href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#2f3338] bg-[linear-gradient(180deg,#2f3439_0%,#272c31_100%)] text-white shadow-[0_1px_0_rgba(255,255,255,0.04)]">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="inline-flex items-center gap-3 pr-4">
-          <img
-            src="/favicon.png?v=20260401"
-            alt={`${SITE_CONFIG.name} logo`}
-            width="48"
-            height="48"
-            className="h-10 w-10 rounded-md object-contain"
-          />
-          <div className="leading-tight">
-            <p className="text-[28px] font-bold tracking-tight text-[#36d6ff]">Release-News</p>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/85">
-              Press Release Distribution
-            </p>
-          </div>
-        </Link>
-
-        <nav className="hidden flex-1 justify-center gap-8 md:flex">
-          {navLinks.map((task) => {
+    <header className="sticky top-0 z-50 w-full bg-white text-[#1a1a1a]">
+      <div className="hidden h-9 items-center justify-center border-b border-[#e7e7e7] px-4 md:flex">
+        <nav className="flex items-center gap-6">
+          {topLinks.map((task) => {
             const isActive = isActiveLink(task.href)
             return (
               <Link
                 key={task.key}
                 href={task.href}
                 className={cn(
-                  'text-[17px] font-medium transition-colors',
-                  isActive ? 'text-[#00d6ff]' : 'text-white/90 hover:text-[#00d6ff]'
+                  'text-xs font-medium transition-colors',
+                  isActive ? 'text-[#111111]' : 'text-[#4b4b4b] hover:text-[#111111]'
                 )}
               >
                 {task.name}
               </Link>
             )
           })}
-          <Link href="/search" className="text-white/90 hover:text-[#00d6ff]">
-            <Search className="h-5 w-5" />
-          </Link>
         </nav>
+      </div>
 
-        <div className="hidden items-center gap-2 md:flex">
-          {isAuthenticated ? (
-            <NavbarAuthControls />
-          ) : (
-            <>
-              <Link href="/login" className="rounded px-3 py-1.5 text-sm font-semibold text-white/90 hover:bg-white/10">
-                Login
-              </Link>
-              <Link
-                href="/register"
-                className="rounded border border-[#00d6ff]/40 bg-[#00d6ff]/10 px-3 py-1.5 text-sm font-semibold text-[#b9f5ff] hover:bg-[#00d6ff]/20"
-              >
-                Register
-              </Link>
-            </>
-          )}
-        </div>
-
-        <div className="flex items-center gap-2 md:hidden">
-          <Link href="/search" className="rounded-full p-2 text-white/90 hover:bg-white/10">
-            <Search className="h-5 w-5" />
-          </Link>
-          <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/10" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:hidden">
+        <Link href="/" className="text-xl font-bold uppercase tracking-[0.2em] text-[#111111]">
+          Top 24 Headline
+        </Link>
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="icon" className="rounded-full text-gray-600 hover:bg-gray-100" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
       </div>
 
+      <div className="hidden border-y border-[#e7e7e7] py-6 text-center md:block">
+        <Link href="/" className="inline-flex">
+          <h1 className="font-serif text-[52px] font-semibold uppercase leading-none tracking-[0.22em] text-black">
+            TOP 24 HEADLINE
+          </h1>
+        </Link>
+      </div>
+
+      <div className="hidden h-12 items-center justify-center border-b border-[#e7e7e7] md:flex">
+        <nav className="flex items-center gap-8">
+          {bottomLinks.map((task) => {
+            const isActive = isActiveLink(task.href)
+            return (
+              <Link
+                key={task.key}
+                href={task.href}
+                className={cn(
+                  'text-xs font-semibold uppercase tracking-[0.12em] transition-colors',
+                  isActive ? 'text-[#89a8c2]' : 'text-[#3e3e3e] hover:text-[#89a8c2]'
+                )}
+              >
+                {task.name}
+              </Link>
+            )
+          })}
+          <Link href="/search" className="text-[#3e3e3e] transition-colors hover:text-[#89a8c2]">
+            <Search className="h-4 w-4" />
+          </Link>
+        </nav>
+      </div>
+
       {isMobileMenuOpen && (
-        <div className="border-t border-white/10 bg-[#23282d] md:hidden">
+        <div className="border-t border-gray-200 bg-white md:hidden">
           <div className="space-y-2 px-4 py-4">
-            {navLinks.map((task) => {
+            {[...topLinks, ...bottomLinks].map((task) => {
               const isActive = isActiveLink(task.href)
               return (
                 <Link
                   key={task.key}
                   href={task.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={cn('flex rounded-xl px-4 py-3 text-sm font-semibold transition-colors', isActive ? 'bg-[#00d6ff] text-[#0a1f26]' : 'text-white/90 hover:bg-white/10')}
+                  className={cn('flex rounded-xl px-4 py-3 text-sm font-semibold transition-colors', isActive ? 'bg-[#eef3f7] text-[#6f8fae]' : 'text-gray-600 hover:bg-gray-50')}
                 >
                   {task.name}
                 </Link>
               )
             })}
-            <Link href="/login" onClick={() => setIsMobileMenuOpen(false)} className="flex rounded-xl px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10">
-              Login
-            </Link>
-            <Link href="/register" onClick={() => setIsMobileMenuOpen(false)} className="flex rounded-xl px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10">
-              Register
+            <Link href="/search" onClick={() => setIsMobileMenuOpen(false)} className="flex rounded-xl px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+              Search
             </Link>
           </div>
         </div>

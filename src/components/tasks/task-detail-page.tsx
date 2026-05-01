@@ -248,54 +248,67 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       <NavbarShell />
-      <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <SchemaJsonLd data={schemaPayload} />
         <Link
           href={taskConfig?.route || "/"}
-          className="mb-6 inline-flex items-center text-sm text-muted-foreground hover:text-foreground"
+          className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200"
         >
-          ← Back to {taskConfig?.label || "posts"}
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Press Releases
         </Link>
 
         <div
           className={cn(
-            "grid gap-10",
-            hideSidebar ? "lg:grid-cols-1" : "lg:grid-cols-[2fr_1fr]"
+            "grid gap-12",
+            hideSidebar ? "lg:grid-cols-1" : "lg:grid-cols-[3fr_1fr]"
           )}
         >
           <div className={cn(isClassified ? "space-y-8" : "")}>
             {isArticle ? (
-              <article className="mx-auto w-full max-w-4xl space-y-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_48px_rgba(15,23,42,0.1)] sm:p-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#F5004F]">
-                  Press Release
-                </p>
-                <h1 className="text-4xl font-semibold leading-tight text-foreground">
-                  {post.title}
-                </h1>
-                {articleSummary ? (
-                  <p className="text-lg leading-8 text-slate-600">{articleSummary}</p>
-                ) : null}
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-                  <span>By {articleAuthor}</span>
-                  {articleDate ? <span>{articleDate}</span> : null}
-                  <Badge variant="secondary" className="inline-flex items-center gap-1">
-                    <Tag className="h-3.5 w-3.5" />
-                    {category}
-                  </Badge>
-                </div>
-                {postTags.length ? (
-                  <div className="flex flex-wrap gap-2">
-                    {postTags.map((tag) => (
-                      <Badge key={tag} variant="outline">
-                        {tag}
-                      </Badge>
-                    ))}
+              <article className="mx-auto w-full max-w-5xl">
+                {/* Article Header */}
+                <div className="mb-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-gradient-to-r from-purple-gradient-from to-purple-gradient-to text-white">
+                      Press Release
+                    </span>
+                    <Badge variant="secondary" className="inline-flex items-center gap-1 bg-purple-50 text-purple-700 border-purple-200">
+                      <Tag className="h-3.5 w-3.5" />
+                      {category}
+                    </Badge>
                   </div>
-                ) : null}
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 mb-6">
+                    {post.title}
+                  </h1>
+                  {articleSummary ? (
+                    <p className="text-xl leading-8 text-gray-600 mb-6">{articleSummary}</p>
+                  ) : null}
+                  <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500 border-b border-gray-200 pb-6">
+                    <div className="flex items-center gap-2">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-gradient-from to-purple-gradient-to flex items-center justify-center text-white font-semibold">
+                        {articleAuthor.charAt(0).toUpperCase()}
+                      </div>
+                      <span className="font-medium text-gray-900">{articleAuthor}</span>
+                    </div>
+                    {articleDate ? (
+                      <div className="flex items-center gap-2">
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span>{articleDate}</span>
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+
+                {/* Featured Image */}
                 {images[0] ? (
-                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-border bg-muted">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl shadow-2xl mb-8">
                     <ContentImage
                       src={images[0]}
                       alt={`${post.title} featured image`}
@@ -306,22 +319,47 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                     />
                   </div>
                 ) : null}
-                <RichContent html={articleHtml} className="leading-8 prose-p:my-6 prose-h2:my-8 prose-h3:my-6 prose-ul:my-6" />
-                <div className="flex flex-wrap items-center gap-2 border-t border-slate-200 pt-4">
-                  <span className="mr-2 text-sm font-semibold text-slate-700">Share:</span>
-                  <Link href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}`} target="_blank" className="inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">
-                    <Twitter className="h-3.5 w-3.5" />
-                    Twitter
-                  </Link>
-                  <Link href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`} target="_blank" className="inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">
-                    <Facebook className="h-3.5 w-3.5" />
-                    Facebook
-                  </Link>
-                  <Link href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`} target="_blank" className="inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">
-                    <Linkedin className="h-3.5 w-3.5" />
-                    LinkedIn
-                  </Link>
+
+                {/* Article Content */}
+                <div className="prose prose-lg prose-gray max-w-none mb-8">
+                  <RichContent html={articleHtml} className="leading-8 prose-p:my-6 prose-h2:my-8 prose-h3:my-6 prose-ul:my-6 prose-headings:text-gray-900 prose-headings:font-semibold" />
                 </div>
+
+                {/* Tags */}
+                {postTags.length ? (
+                  <div className="mb-8">
+                    <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3">Tags</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {postTags.map((tag) => (
+                        <Badge key={tag} variant="outline" className="border-purple-200 text-purple-700 hover:bg-purple-50">
+                          #{tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+
+                {/* Share Section */}
+                <div className="border-t border-gray-200 pt-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-semibold text-gray-900">Share this press release</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    <Link href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}`} target="_blank" className="inline-flex items-center gap-2 rounded-full bg-black text-white px-4 py-2 text-sm font-medium hover:bg-gray-800 transition-colors duration-200">
+                      <Twitter className="h-4 w-4" />
+                      Twitter
+                    </Link>
+                    <Link href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`} target="_blank" className="inline-flex items-center gap-2 rounded-full bg-blue-600 text-white px-4 py-2 text-sm font-medium hover:bg-blue-700 transition-colors duration-200">
+                      <Facebook className="h-4 w-4" />
+                      Facebook
+                    </Link>
+                    <Link href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`} target="_blank" className="inline-flex items-center gap-2 rounded-full bg-blue-700 text-white px-4 py-2 text-sm font-medium hover:bg-blue-800 transition-colors duration-200">
+                      <Linkedin className="h-4 w-4" />
+                      LinkedIn
+                    </Link>
+                  </div>
+                </div>
+
                 <ArticleComments slug={post.slug} />
               </article>
             ) : null}
@@ -493,19 +531,22 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
           ) : null}
         </div>
 
-        <section className="mt-12">
+        <section className="mt-16">
           {related.length ? (
             <>
-            <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-foreground">
-                More in {category}
+            <div className="mb-8 flex items-center justify-between">
+              <h2 className="text-2xl font-bold text-gray-900">
+                More Press Releases in {category}
               </h2>
               {taskConfig?.route && (
                 <Link
                   href={taskConfig.route}
-                  className="text-sm text-muted-foreground hover:text-foreground"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-purple-gradient-from hover:text-purple-gradient-to transition-colors duration-200"
                 >
                   View all
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </Link>
               )}
             </div>
@@ -520,39 +561,40 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
             </div>
             </>
           ) : null}
-          <nav className="mt-6 rounded-2xl border border-border bg-card/60 p-4">
-            <p className="text-sm font-semibold text-foreground">Related links</p>
-            <ul className="mt-2 space-y-2 text-sm">
+          
+          {/* Related Links Section */}
+          <div className="mt-12 rounded-3xl bg-gradient-to-br from-purple-50 to-blue-50 p-8 border border-purple-100">
+            <h3 className="text-lg font-semibold text-gray-900 mb-6">Explore More</h3>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((item) => (
-                <li key={`link-${item.id}`}>
-                  <Link
-                    href={buildPostUrl(task, item.slug)}
-                    className="text-primary underline-offset-4 hover:underline"
-                  >
+                <Link
+                  key={`link-${item.id}`}
+                  href={buildPostUrl(task, item.slug)}
+                  className="block p-4 rounded-xl bg-white border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all duration-200 group"
+                >
+                  <h4 className="text-sm font-medium text-gray-900 group-hover:text-purple-gradient-from transition-colors duration-200">
                     {item.title}
-                  </Link>
-                </li>
+                  </h4>
+                </Link>
               ))}
               {taskConfig?.route ? (
-                <li>
-                  <Link
-                    href={taskConfig.route}
-                    className="text-primary underline-offset-4 hover:underline"
-                  >
-                    Browse all {taskConfig.label}
-                  </Link>
-                </li>
-              ) : null}
-              <li>
                 <Link
-                  href={`/search?q=${encodeURIComponent(category)}`}
-                  className="text-primary underline-offset-4 hover:underline"
+                  href={taskConfig.route}
+                  className="block p-4 rounded-xl bg-gradient-to-r from-purple-gradient-from to-purple-gradient-to text-white font-medium text-center hover:shadow-lg transition-all duration-200"
                 >
-                  Search more in {category}
+                  Browse all {taskConfig.label}
                 </Link>
-              </li>
-            </ul>
-          </nav>
+              ) : null}
+              <Link
+                href={`/search?q=${encodeURIComponent(category)}`}
+                className="block p-4 rounded-xl bg-white border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all duration-200 text-center group"
+              >
+                <span className="text-sm font-medium text-gray-900 group-hover:text-purple-gradient-from transition-colors duration-200">
+                  Search more in {category}
+                </span>
+              </Link>
+            </div>
+          </div>
         </section>
       </main>
       <Footer />

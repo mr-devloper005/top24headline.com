@@ -34,40 +34,52 @@ const pillars = [
   },
 ]
 
+const freepikImages = [
+  'https://img.freepik.com/free-photo/group-diverse-people-having-business-meeting_53876-25060.jpg',
+  'https://img.freepik.com/free-photo/business-people-working-together-office_1303-22863.jpg',
+  'https://img.freepik.com/free-photo/close-up-people-working-office_23-2149300656.jpg',
+]
+
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#f8fbff]">
+    <div className="min-h-screen bg-[#f5f5f7]">
       <NavbarShell />
       <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <section className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#F5004F]">About Us</p>
-            <h1 className="mt-4 text-5xl font-semibold tracking-[-0.05em] text-[#111827]">
-              We help brands scale media visibility through reliable press distribution
-            </h1>
-            <p className="mt-5 text-sm leading-8 text-slate-600">
-              {SITE_CONFIG.name} is a media press release platform designed for modern businesses that need fast,
-              professional, and high-reach distribution. Our mission is simple: make quality media publication
-              accessible for every growing brand.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/contact" className="inline-flex rounded-full bg-[#F5004F] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#d70044]">
-                Talk to Us
-              </Link>
-              <Link href="/pricing" className="inline-flex rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">
-                View Pricing
-              </Link>
-            </div>
+        <section className="relative overflow-hidden rounded-3xl border border-black/10 bg-[#111111] p-8 text-white shadow-[0_18px_50px_rgba(15,23,42,0.18)] lg:p-12">
+          <div className="absolute inset-0">
+            <ContentImage src={freepikImages[0]} alt="Team collaboration background" fill className="object-cover opacity-35" />
+            <div className="absolute inset-0 bg-black/60" />
           </div>
-          <div className="relative min-h-[320px] overflow-hidden rounded-3xl border border-slate-200 shadow-[0_18px_50px_rgba(15,23,42,0.12)]">
-            <ContentImage src="/site-media/contact-reference.png" alt="Team collaboration" fill className="object-cover" />
+          <div className="relative grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">About Us</p>
+              <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
+              We help brands scale media visibility through reliable press distribution
+              </h1>
+              <p className="mt-5 text-sm leading-8 text-white/85">
+                {SITE_CONFIG.name} is a media press release platform designed for modern businesses that need fast,
+                professional, and high-reach distribution. Our mission is simple: make quality media publication
+                accessible for every growing brand.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link href="/contact" className="inline-flex bg-[#f04b23] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#db3e18]">
+                  Talk to Us
+                </Link>
+                <Link href="/pricing" className="inline-flex border border-white/35 bg-transparent px-6 py-2.5 text-sm font-semibold text-white hover:bg-white/10">
+                  View Pricing
+                </Link>
+              </div>
+            </div>
+            <div className="relative min-h-[320px] overflow-hidden rounded-2xl border border-white/20">
+              <ContentImage src={freepikImages[1]} alt="Team collaboration" fill className="object-cover" />
+            </div>
           </div>
         </section>
 
         <section className="mt-12 grid gap-4 sm:grid-cols-3">
           {metrics.map((item) => (
-            <article key={item.label} className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
-              <p className="text-3xl font-semibold text-[#0f2340]">{item.value}</p>
+            <article key={item.label} className="rounded-2xl border border-[#e5e5e8] bg-white p-6 text-center shadow-sm">
+              <p className="text-3xl font-semibold text-[#111111]">{item.value}</p>
               <p className="mt-2 text-sm font-medium text-slate-600">{item.label}</p>
             </article>
           ))}
@@ -77,13 +89,22 @@ export default function AboutPage() {
           <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#111827]">What defines our product</h2>
           <div className="mt-7 grid gap-5 sm:grid-cols-2">
             {pillars.map((item) => (
-              <article key={item.title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1">
-                <item.icon className="h-8 w-8 text-[#F5004F]" />
+              <article key={item.title} className="rounded-2xl border border-[#e5e5e8] bg-white p-6 shadow-sm transition hover:-translate-y-1">
+                <item.icon className="h-8 w-8 text-[#f04b23]" />
                 <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-slate-600">{item.description}</p>
               </article>
             ))}
           </div>
+        </section>
+
+        <section className="mt-12 grid gap-5 sm:grid-cols-2">
+          {[freepikImages[2], freepikImages[0]].map((image) => (
+            <article key={image} className="relative min-h-[220px] overflow-hidden rounded-2xl border border-[#e5e5e8] shadow-sm">
+              <ContentImage src={image} alt="About media distribution visual" fill className="object-cover" />
+              <div className="absolute inset-0 bg-black/25" />
+            </article>
+          ))}
         </section>
       </main>
       <Footer />

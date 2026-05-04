@@ -102,29 +102,29 @@ export async function TaskListPage({
 
   if (task === 'mediaDistribution') {
     return (
-      <div className="min-h-screen bg-[#f5f5f7]">
+      <div className="min-h-screen bg-gray-900">
         <NavbarShell />
         <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <section className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#f04b23]">Latest News</p>
-              <h1 className="mt-3 text-5xl font-semibold tracking-[-0.05em] text-[#111827]">Press release newsroom</h1>
-              <p className="mt-4 max-w-2xl text-sm leading-8 text-slate-600">
-                Browse press releases in a scan-first newsroom grid with category and date filters.
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-orange-500">Latest News</p>
+              <h1 className="mt-3 text-5xl font-semibold tracking-[-0.05em] text-white">top24headline newsroom</h1>
+              <p className="mt-4 max-w-2xl text-sm leading-8 text-gray-300">
+                Browse press releases in a scan-first newsroom grid with category and date filters. Stay updated with the latest news and announcements.
               </p>
             </div>
             <form
-              className="grid gap-3 rounded-3xl border border-[#e5e5e8] bg-white p-5 shadow-[0_15px_35px_rgba(15,23,42,0.08)]"
+              className="grid gap-3 rounded-3xl border border-gray-700 bg-gray-800 p-5 shadow-[0_15px_35px_rgba(0,0,0,0.3)]"
               action={listPath}
             >
               <input
                 name="q"
                 defaultValue={searchQuery || ''}
-                className="h-11 rounded-xl border border-[#e4e4e8] bg-[#f5f5f7] px-3 text-sm"
+                className="h-11 rounded-xl border border-gray-600 bg-gray-700 px-3 text-sm text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none"
                 placeholder="Search headlines or content"
               />
               <div className="grid gap-3 sm:grid-cols-2">
-                <select name="category" defaultValue={normalizedCategory} className="h-11 rounded-xl border border-[#e4e4e8] bg-[#f5f5f7] px-3 text-sm">
+                <select name="category" defaultValue={normalizedCategory} className="h-11 rounded-xl border border-gray-600 bg-gray-700 px-3 text-sm text-white focus:border-orange-500 focus:outline-none">
                   <option value="all">All categories</option>
                   {CATEGORY_OPTIONS.map((item) => (
                     <option key={item.slug} value={item.slug}>
@@ -135,7 +135,7 @@ export async function TaskListPage({
                 <select
                   name="date"
                   defaultValue={dateFilter || 'all'}
-                  className="h-11 rounded-xl border border-[#e4e4e8] bg-[#f5f5f7] px-3 text-sm"
+                  className="h-11 rounded-xl border border-gray-600 bg-gray-700 px-3 text-sm text-white focus:border-orange-500 focus:outline-none"
                 >
                   <option value="all">Any date</option>
                   <option value="today">Today</option>
@@ -143,7 +143,7 @@ export async function TaskListPage({
                   <option value="30d">Last 30 days</option>
                 </select>
               </div>
-              <button type="submit" className="h-11 rounded-full bg-[#f04b23] text-sm font-semibold text-white hover:bg-[#db3e18]">
+              <button type="submit" className="h-11 rounded-full bg-orange-500 text-sm font-semibold text-white hover:bg-orange-600 transition-colors duration-200">
                 Apply Filters
               </button>
             </form>

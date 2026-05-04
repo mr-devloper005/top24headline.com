@@ -7,51 +7,16 @@ import { getProductKind } from '@/design/factory/get-product-kind'
 import { REGISTER_PAGE_OVERRIDE_ENABLED, RegisterPageOverride } from '@/overrides/register-page'
 
 function getRegisterConfig(kind: ReturnType<typeof getProductKind>) {
-  if (kind === 'directory') {
-    return {
-      shell: 'bg-[#f8fbff] text-slate-950',
-      panel: 'border border-slate-200 bg-white',
-      side: 'border border-slate-200 bg-slate-50',
-      muted: 'text-slate-600',
-      action: 'bg-slate-950 text-white hover:bg-slate-800',
-      icon: Building2,
-      title: 'Create a business-ready account',
-      body: 'List services, manage locations, and activate trust signals with a proper directory workflow.',
-    }
-  }
-  if (kind === 'editorial') {
-    return {
-      shell: 'bg-[#fbf6ee] text-[#241711]',
-      panel: 'border border-[#dcc8b7] bg-[#fffdfa]',
-      side: 'border border-[#e6d6c8] bg-[#fff4e8]',
-      muted: 'text-[#6e5547]',
-      action: 'bg-[#241711] text-[#fff1e2] hover:bg-[#3a241b]',
-      icon: FileText,
-      title: 'Start your contributor workspace',
-      body: 'Create a profile for essays, issue drafts, editorial review, and publication scheduling.',
-    }
-  }
-  if (kind === 'visual') {
-    return {
-      shell: 'bg-[#07101f] text-white',
-      panel: 'border border-white/10 bg-white/6',
-      side: 'border border-white/10 bg-white/5',
-      muted: 'text-slate-300',
-      action: 'bg-[#8df0c8] text-[#07111f] hover:bg-[#77dfb8]',
-      icon: ImageIcon,
-      title: 'Set up your creator profile',
-      body: 'Launch a visual-first account with gallery publishing, identity surfaces, and profile-led discovery.',
-    }
-  }
+  // Always return dark theme with orange accents to match homepage
   return {
-    shell: 'bg-[#f7f1ea] text-[#261811]',
-    panel: 'border border-[#ddcdbd] bg-[#fffaf4]',
-    side: 'border border-[#e8dbce] bg-[#f3e8db]',
-    muted: 'text-[#71574a]',
-    action: 'bg-[#5b2b3b] text-[#fff0f5] hover:bg-[#74364b]',
-    icon: Bookmark,
-    title: 'Create a curator account',
-    body: 'Build shelves, save references, and connect collections to your profile without a generic feed setup.',
+    shell: 'bg-gray-900 text-white',
+    panel: 'border border-gray-700 bg-gray-800',
+    side: 'border border-gray-700 bg-gray-800',
+    muted: 'text-gray-300',
+    action: 'bg-orange-500 text-white hover:bg-orange-600',
+    icon: Sparkles,
+    title: 'Create your top24headline account',
+    body: 'Join our press release distribution platform and start reaching thousands of media outlets with your news.',
   }
 }
 
@@ -74,25 +39,46 @@ export default function RegisterPage() {
             <Icon className="h-8 w-8" />
             <h1 className="mt-5 text-4xl font-semibold tracking-[-0.05em]">{config.title}</h1>
             <p className={`mt-5 text-sm leading-8 ${config.muted}`}>{config.body}</p>
-            <div className="mt-8 grid gap-4">
-              {['Different onboarding per product family', 'No repeated one-size-fits-all shell', 'Profile, publishing, and discovery aligned'].map((item) => (
-                <div key={item} className="rounded-[1.5rem] border border-current/10 px-4 py-4 text-sm">{item}</div>
-              ))}
+            <div className="mt-8 space-y-4">
+              <h3 className="text-lg font-semibold text-white">Why choose top24headline?</h3>
+              <div className="space-y-3">
+                {[
+                  'Global press release distribution to thousands of media outlets',
+                  'Professional platform with advanced analytics and reporting',
+                  'Dedicated support for PR professionals and businesses'
+                ].map((item) => (
+                  <div key={item} className="rounded-xl border border-gray-600 bg-gray-700/50 px-4 py-3 text-sm text-gray-300">
+                    {item}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
           <div className={`rounded-[2rem] p-8 ${config.panel}`}>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Create account</p>
-            <form className="mt-6 grid gap-4">
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Full name" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Email address" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Password" type="password" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="What are you creating or publishing?" />
-              <button type="submit" className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${config.action}`}>Create account</button>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-orange-500">Create account</p>
+            <form className="mt-6 grid gap-6">
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-gray-300">Full name</label>
+                <input className="h-12 w-full rounded-xl border border-gray-600 bg-gray-700 px-4 text-sm text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none" placeholder="John Doe" />
+              </div>
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-gray-300">Email address</label>
+                <input className="h-12 w-full rounded-xl border border-gray-600 bg-gray-700 px-4 text-sm text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none" placeholder="john@example.com" />
+              </div>
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-gray-300">Password</label>
+                <input className="h-12 w-full rounded-xl border border-gray-600 bg-gray-700 px-4 text-sm text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none" placeholder="Create a strong password" type="password" />
+              </div>
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-gray-300">What are you creating or publishing?</label>
+                <input className="h-12 w-full rounded-xl border border-gray-600 bg-gray-700 px-4 text-sm text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none" placeholder="Press releases, news, announcements..." />
+              </div>
+              <button type="submit" className={`inline-flex h-12 items-center justify-center rounded-full px-8 text-sm font-semibold ${config.action} shadow-lg hover:shadow-xl transition-all duration-200`}>Create account</button>
             </form>
-            <div className={`mt-6 flex items-center justify-between text-sm ${config.muted}`}>
+            <div className={`mt-8 flex items-center justify-between text-sm ${config.muted}`}>
               <span>Already have an account?</span>
-              <Link href="/login" className="inline-flex items-center gap-2 font-semibold hover:underline">
+              <Link href="/login" className="inline-flex items-center gap-2 font-semibold text-orange-500 hover:text-orange-400 transition-colors duration-200">
                 <Sparkles className="h-4 w-4" />
                 Sign in
               </Link>

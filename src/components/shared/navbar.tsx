@@ -15,106 +15,124 @@ export function Navbar() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
-  const topLinks = [
+  const navLinks = [
+    { key: 'newsroom', name: 'Newsroom', href: '/updates' },
+    { key: 'pricing', name: 'Pricing', href: '/pricing' },
     { key: 'about', name: 'About', href: '/about' },
-    { key: 'terms', name: 'Terms of Service', href: '/terms' },
-    { key: 'privacy', name: 'Privacy Policy', href: '/privacy' },
     { key: 'contact', name: 'Contact', href: '/contact' },
-  ]
-  const bottomLinks = [
-    { key: 'home', name: 'Home', href: '/' },
-    { key: 'contact-bottom', name: 'Contact', href: '/contact' },
   ]
 
   const isActiveLink = (href: string) =>
     href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`)
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white text-[#1a1a1a]">
-      <div className="hidden h-9 items-center justify-center border-b border-[#e7e7e7] px-4 md:flex">
-        <nav className="flex items-center gap-6">
-          {topLinks.map((task) => {
-            const isActive = isActiveLink(task.href)
-            return (
-              <Link
-                key={task.key}
-                href={task.href}
-                className={cn(
-                  'text-xs font-medium transition-colors',
-                  isActive ? 'text-[#111111]' : 'text-[#4b4b4b] hover:text-[#111111]'
-                )}
-              >
-                {task.name}
-              </Link>
-            )
-          })}
-        </nav>
-      </div>
-
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:hidden">
-        <Link href="/" className="text-xl font-bold uppercase tracking-[0.2em] text-[#111111]">
-          Top 24 Headline
-        </Link>
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" className="rounded-full text-gray-600 hover:bg-gray-100" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+    <header className="sticky top-0 z-50 w-full bg-gray-900 border-b border-gray-800">
+      {/* Top Bar */}
+      <div className="hidden h-8 items-center justify-center bg-gray-800 text-white text-xs md:flex">
+        <div className="flex items-center space-x-6">
+          <span>Press Distribution Platform</span>
+          <span>|</span>
+          <span>Global Media Reach</span>
         </div>
       </div>
-
-      <div className="hidden border-y border-[#e7e7e7] py-6 text-center md:block">
-        <Link href="/" className="inline-flex">
-          <h1 className="font-serif text-[52px] font-semibold uppercase leading-none tracking-[0.22em] text-black">
-            TOP 24 HEADLINE
-          </h1>
-        </Link>
-      </div>
-
-      <div className="hidden h-12 items-center justify-center border-b border-[#e7e7e7] md:flex">
-        <nav className="flex items-center gap-8">
-          {bottomLinks.map((task) => {
-            const isActive = isActiveLink(task.href)
-            return (
-              <Link
-                key={task.key}
-                href={task.href}
-                className={cn(
-                  'text-xs font-semibold uppercase tracking-[0.12em] transition-colors',
-                  isActive ? 'text-[#89a8c2]' : 'text-[#3e3e3e] hover:text-[#89a8c2]'
-                )}
-              >
-                {task.name}
-              </Link>
-            )
-          })}
-          <Link href="/search" className="text-[#3e3e3e] transition-colors hover:text-[#89a8c2]">
-            <Search className="h-4 w-4" />
-          </Link>
-        </nav>
-      </div>
-
-      {isMobileMenuOpen && (
-        <div className="border-t border-gray-200 bg-white md:hidden">
-          <div className="space-y-2 px-4 py-4">
-            {[...topLinks, ...bottomLinks].map((task) => {
-              const isActive = isActiveLink(task.href)
-              return (
-                <Link
-                  key={task.key}
-                  href={task.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={cn('flex rounded-xl px-4 py-3 text-sm font-semibold transition-colors', isActive ? 'bg-[#eef3f7] text-[#6f8fae]' : 'text-gray-600 hover:bg-gray-50')}
-                >
-                  {task.name}
-                </Link>
-              )
-            })}
-            <Link href="/search" onClick={() => setIsMobileMenuOpen(false)} className="flex rounded-xl px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50">
-              Search
+      
+      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo Section */}
+          <div className="flex-shrink-0">
+            <Link href="/" className="flex flex-col items-start leading-tight">
+              <span className="text-2xl font-bold tracking-tight text-white sm:text-3xl">top24headline</span>
+              <span className="text-xs font-semibold uppercase tracking-widest text-gray-300 mt-1">MEDIA DISTRIBUTION DESK</span>
             </Link>
           </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex lg:flex-1 lg:justify-center lg:items-center">
+            <ul className="flex items-center space-x-8">
+              {navLinks.map((task) => {
+                const isActive = isActiveLink(task.href)
+                return (
+                  <Link
+                    key={task.key}
+                    href={task.href}
+                    className={cn(
+                      'text-sm font-medium transition-colors duration-200',
+                      isActive ? 'text-orange-500' : 'text-gray-300 hover:text-white'
+                    )}
+                  >
+                    {task.name}
+                  </Link>
+                )
+              })}
+            </ul>
+          </div>
+
+          {/* Right Section */}
+          <div className="flex items-center space-x-4">
+            {/* Search Bar */}
+            <div className="hidden lg:flex items-center">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="w-48 pl-10 pr-4 py-2 text-sm border border-gray-600 bg-gray-800 text-white rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent placeholder-gray-400"
+                />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              </div>
+            </div>
+            
+            {/* Sign in Link */}
+            <Link href="/login" className="hidden lg:block text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200">
+              Sign in
+            </Link>
+            
+            {/* Get Started Button */}
+            <Link href="/register" className="hidden lg:block bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition-colors duration-200 shadow-md hover:shadow-lg">
+              Start now
+            </Link>
+            
+            {/* Mobile Menu Button */}
+            <Button variant="ghost" size="icon" className="lg:hidden rounded-full text-gray-600 hover:bg-gray-100" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
+          </div>
         </div>
-      )}
+
+        {/* Mobile Navigation */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden border-t border-gray-200 py-4">
+            <div className="space-y-2">
+              {navLinks.map((task) => {
+                const isActive = isActiveLink(task.href)
+                return (
+                  <Link
+                    key={task.key}
+                    href={task.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={cn('block px-4 py-2 text-base font-medium transition-colors', isActive ? 'text-orange-500 bg-gray-800' : 'text-gray-300 hover:text-white hover:bg-gray-800')}
+                  >
+                    {task.name}
+                  </Link>
+                )
+              })}
+              <div className="px-4 py-2">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="w-full pl-10 pr-4 py-2 text-sm border border-gray-600 bg-gray-800 text-white rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent placeholder-gray-400"
+                />
+                <Search className="absolute left-7 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              </div>
+              <Link href="/login" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-2 text-base font-medium text-gray-300 hover:text-white">
+                Sign in
+              </Link>
+              <Link href="/register" onClick={() => setIsMobileMenuOpen(false)} className="block mx-4 bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-semibold text-center transition-colors duration-200 shadow-md hover:shadow-lg">
+                Start now
+              </Link>
+            </div>
+          </div>
+        )}
+      </nav>
     </header>
   )
 }

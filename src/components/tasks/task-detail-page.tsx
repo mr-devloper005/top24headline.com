@@ -248,13 +248,13 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen bg-gray-900">
       <NavbarShell />
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <SchemaJsonLd data={schemaPayload} />
         <Link
           href={taskConfig?.route || "/"}
-          className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200"
+          className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200"
         >
           <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -274,26 +274,26 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                 {/* Article Header */}
                 <div className="mb-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-gradient-to-r from-purple-gradient-from to-purple-gradient-to text-white">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-gradient-to-r from-orange-500 to-orange-600 text-white">
                       Press Release
                     </span>
-                    <Badge variant="secondary" className="inline-flex items-center gap-1 bg-purple-50 text-purple-700 border-purple-200">
+                    <Badge variant="secondary" className="inline-flex items-center gap-1 bg-orange-50 text-orange-700 border-orange-200">
                       <Tag className="h-3.5 w-3.5" />
                       {category}
                     </Badge>
                   </div>
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 mb-6">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6">
                     {post.title}
                   </h1>
                   {articleSummary ? (
-                    <p className="text-xl leading-8 text-gray-600 mb-6">{articleSummary}</p>
+                    <p className="text-xl leading-8 text-gray-300 mb-6">{articleSummary}</p>
                   ) : null}
-                  <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500 border-b border-gray-200 pb-6">
+                  <div className="flex flex-wrap items-center gap-6 text-sm text-gray-400 border-b border-gray-700 pb-6">
                     <div className="flex items-center gap-2">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-gradient-from to-purple-gradient-to flex items-center justify-center text-white font-semibold">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center text-white font-semibold">
                         {articleAuthor.charAt(0).toUpperCase()}
                       </div>
-                      <span className="font-medium text-gray-900">{articleAuthor}</span>
+                      <span className="font-medium text-white">{articleAuthor}</span>
                     </div>
                     {articleDate ? (
                       <div className="flex items-center gap-2">
@@ -322,16 +322,16 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
 
                 {/* Article Content */}
                 <div className="prose prose-lg prose-gray max-w-none mb-8">
-                  <RichContent html={articleHtml} className="leading-8 prose-p:my-6 prose-h2:my-8 prose-h3:my-6 prose-ul:my-6 prose-headings:text-gray-900 prose-headings:font-semibold" />
+                  <RichContent html={articleHtml} className="leading-8 prose-p:my-6 prose-h2:my-8 prose-h3:my-6 prose-ul:my-6 prose-headings:text-white prose-headings:font-semibold" />
                 </div>
 
                 {/* Tags */}
                 {postTags.length ? (
                   <div className="mb-8">
-                    <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3">Tags</h3>
+                    <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-3">Tags</h3>
                     <div className="flex flex-wrap gap-2">
                       {postTags.map((tag) => (
-                        <Badge key={tag} variant="outline" className="border-purple-200 text-purple-700 hover:bg-purple-50">
+                        <Badge key={tag} variant="outline" className="border-orange-200 text-orange-400 hover:bg-orange-50">
                           #{tag}
                         </Badge>
                       ))}
@@ -340,12 +340,12 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                 ) : null}
 
                 {/* Share Section */}
-                <div className="border-t border-gray-200 pt-8">
+                <div className="border-t border-gray-700 pt-8">
                   <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-semibold text-gray-900">Share this press release</h3>
+                    <h3 className="text-lg font-semibold text-white">Share this press release</h3>
                   </div>
                   <div className="flex flex-wrap gap-3">
-                    <Link href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}`} target="_blank" className="inline-flex items-center gap-2 rounded-full bg-black text-white px-4 py-2 text-sm font-medium hover:bg-gray-800 transition-colors duration-200">
+                    <Link href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}`} target="_blank" className="inline-flex items-center gap-2 rounded-full bg-gray-800 text-white px-4 py-2 text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
                       <Twitter className="h-4 w-4" />
                       Twitter
                     </Link>
@@ -534,14 +534,14 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
         <section className="mt-16">
           {related.length ? (
             <>
-            <div className="mb-8 flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900">
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-2xl font-bold text-white">
                 More Press Releases in {category}
               </h2>
               {taskConfig?.route && (
                 <Link
                   href={taskConfig.route}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-purple-gradient-from hover:text-purple-gradient-to transition-colors duration-200"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-orange-500 hover:text-orange-400 transition-colors duration-200"
                 >
                   View all
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -563,16 +563,16 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
           ) : null}
           
           {/* Related Links Section */}
-          <div className="mt-12 rounded-3xl bg-gradient-to-br from-purple-50 to-blue-50 p-8 border border-purple-100">
+          <div className="mt-12 rounded-3xl bg-gradient-to-br from-orange-50 to-red-50 p-8 border border-orange-100">
             <h3 className="text-lg font-semibold text-gray-900 mb-6">Explore More</h3>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((item) => (
                 <Link
                   key={`link-${item.id}`}
                   href={buildPostUrl(task, item.slug)}
-                  className="block p-4 rounded-xl bg-white border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all duration-200 group"
+                  className="block p-4 rounded-xl bg-white border border-gray-200 hover:border-orange-300 hover:shadow-md transition-all duration-200 group"
                 >
-                  <h4 className="text-sm font-medium text-gray-900 group-hover:text-purple-gradient-from transition-colors duration-200">
+                  <h4 className="text-sm font-medium text-gray-900 group-hover:text-orange-500 transition-colors duration-200">
                     {item.title}
                   </h4>
                 </Link>
@@ -580,16 +580,16 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
               {taskConfig?.route ? (
                 <Link
                   href={taskConfig.route}
-                  className="block p-4 rounded-xl bg-gradient-to-r from-purple-gradient-from to-purple-gradient-to text-white font-medium text-center hover:shadow-lg transition-all duration-200"
+                  className="block p-4 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 text-white font-medium text-center hover:shadow-lg transition-all duration-200"
                 >
                   Browse all {taskConfig.label}
                 </Link>
               ) : null}
               <Link
                 href={`/search?q=${encodeURIComponent(category)}`}
-                className="block p-4 rounded-xl bg-white border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all duration-200 text-center group"
+                className="block p-4 rounded-xl bg-white border border-gray-200 hover:border-orange-300 hover:shadow-md transition-all duration-200 text-center group"
               >
-                <span className="text-sm font-medium text-gray-900 group-hover:text-purple-gradient-from transition-colors duration-200">
+                <span className="text-sm font-medium text-gray-900 group-hover:text-orange-500 transition-colors duration-200">
                   Search more in {category}
                 </span>
               </Link>

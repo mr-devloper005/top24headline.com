@@ -1,5 +1,7 @@
 import Link from 'next/link'
-import { Phone } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react'
+import { NavbarShell } from '@/components/shared/navbar-shell'
+import { Footer } from '@/components/shared/footer'
 import { CONTACT_PAGE_OVERRIDE_ENABLED, ContactPageOverride } from '@/overrides/contact-page'
 
 export default function ContactPage() {
@@ -8,204 +10,206 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
-      <header>
-        <div className="bg-[#132f55] text-white">
-          <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 text-xs sm:px-6 lg:px-8">
-            <p className="inline-flex items-center gap-1.5 font-medium">
-              <Phone className="h-3 w-3" />
-              +1 888-880-9539
+    <div className="min-h-screen bg-white">
+      <NavbarShell />
+
+      {/* Hero Section */}
+      <section className="relative bg-[#0d0d0f] text-white py-20">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-black/20"></div>
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto">
+              Get in touch with our team for press release distribution and media inquiries
             </p>
-            <div className="flex items-center gap-0">
-              <Link href="/register" className="px-4 py-3 hover:bg-[#1b3f70]">
-                Sign Up
-              </Link>
-              <Link href="/login" className="px-4 py-3 hover:bg-[#1b3f70]">
-                Login
-              </Link>
-              <Link href="/updates" className="bg-[#1783d0] px-5 py-3 font-semibold hover:bg-[#0f73bb]">
-                Submit Release
-              </Link>
-            </div>
           </div>
         </div>
-        <div className="border-b border-[#e1e1e1] bg-white">
-          <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-            <Link href="/" className="inline-flex items-center gap-2">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#86d44a] text-xs font-bold text-white">24</span>
-              <span className="text-xl font-bold text-[#1c5a9d]">24-7 PressRelease</span>
-            </Link>
-            <nav className="hidden items-center gap-6 text-xs font-medium text-[#666] md:flex">
-              <Link href="/about" className="hover:text-[#1783d0]">Company</Link>
-              <Link href="/pricing" className="hover:text-[#1783d0]">Pricing</Link>
-              <Link href="/updates" className="hover:text-[#1783d0]">News</Link>
-              <Link href="/help" className="hover:text-[#1783d0]">Resources</Link>
-              <Link href="/contact" className="font-semibold text-[#1a1a1a]">Contact Us</Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+      </section>
 
-      <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <section className="mb-8 text-center">
-          <h1 className="text-5xl font-semibold tracking-[-0.04em] text-[#0978c7]">Contact Us</h1>
-        </section>
-
-        <section className="grid gap-8 lg:grid-cols-[1.25fr_0.75fr]">
-          <div className="rounded-sm border border-[#dddddd] bg-[#ececec] p-5">
-            <form className="grid gap-4">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label className="mb-1.5 block text-xs font-semibold text-[#565656]">Contact Name *</label>
-                  <input className="h-11 w-full border border-[#d9d9d9] bg-white px-3 text-sm" />
-                </div>
-                <div>
-                  <label className="mb-1.5 block text-xs font-semibold text-[#565656]">Phone Number</label>
-                  <input className="h-11 w-full border border-[#d9d9d9] bg-white px-3 text-sm" />
-                </div>
-              </div>
-              <div>
-                <label className="mb-1.5 block text-xs font-semibold text-[#565656]">Email *</label>
-                <input className="h-11 w-full border border-[#d9d9d9] bg-white px-3 text-sm" />
-              </div>
-              <p className="text-xs font-semibold text-[#777777]">Help Us Understand Your Needs A Little More.</p>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label className="mb-1.5 block text-xs font-semibold text-[#565656]">What type of organization are you? *</label>
-                  <select className="h-10 w-full border border-[#d9d9d9] bg-white px-3 text-sm text-[#777777]">
-                    <option>Please Select</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="mb-1.5 block text-xs font-semibold text-[#565656]">Subject: How may we help you? *</label>
-                  <select className="h-10 w-full border border-[#d9d9d9] bg-white px-3 text-sm text-[#777777]">
-                    <option>Please Select</option>
-                  </select>
-                </div>
-              </div>
-              <div>
-                <label className="mb-1.5 block text-xs font-semibold text-[#565656]">Message / Comment *</label>
-                <textarea className="min-h-[110px] w-full border border-[#d9d9d9] bg-white px-3 py-2 text-sm" />
-              </div>
-              <div className="mx-auto mt-1 w-full max-w-[280px] border border-[#d8d8d8] bg-white px-4 py-3">
-                <div className="flex items-center justify-between text-xs text-[#555]">
-                  <span>I'm not a robot</span>
-                  <span className="text-[#999]">reCAPTCHA</span>
-                </div>
-              </div>
-              <button type="submit" className="mx-auto mt-2 inline-flex h-10 items-center justify-center bg-[#1587d3] px-10 text-sm font-semibold text-white hover:bg-[#0e74b6]">
-                Submit Now
-              </button>
-            </form>
-          </div>
-
-          <aside className="space-y-8 pt-1">
+      {/* Contact Form and Info Section */}
+      <section className="py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            {/* Contact Form */}
             <div>
-              <h2 className="text-lg font-semibold text-[#1d1d1d]">Telephone Hours:</h2>
-              <p className="mt-2 text-sm text-[#5f5f5f]">Monday to Friday</p>
-              <p className="text-sm text-[#5f5f5f]">8:30am to 5:00pm Pacific (PDT)</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Send us a message</h2>
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                    <input 
+                      type="text" 
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500" 
+                      placeholder="John"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                    <input 
+                      type="text" 
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500" 
+                      placeholder="Doe"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                  <input 
+                    type="email" 
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500" 
+                    placeholder="john@example.com"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                  <input 
+                    type="tel" 
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500" 
+                    placeholder="+1 (555) 123-4567"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                  <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                    <option value="">Select a subject</option>
+                    <option value="general">General Inquiry</option>
+                    <option value="distribution">Press Release Distribution</option>
+                    <option value="pricing">Pricing Information</option>
+                    <option value="support">Technical Support</option>
+                    <option value="partnership">Partnership</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                  <textarea 
+                    rows={6} 
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500" 
+                    placeholder="Tell us more about your inquiry..."
+                  ></textarea>
+                </div>
+                
+                <button 
+                  type="submit" 
+                  className="w-full bg-[#f04b23] text-white py-3 px-6 rounded-lg font-medium hover:bg-[#db3e18] transition-colors duration-200 flex items-center justify-center gap-2"
+                >
+                  <Send className="h-5 w-5" />
+                  Send Message
+                </button>
+              </form>
             </div>
-
-            <div className="border-t border-[#e1e1e1] pt-6">
-              <h2 className="text-lg font-semibold text-[#1d1d1d]">Toll Free Telephone:</h2>
-              <p className="mt-2 text-sm text-[#5f5f5f]">1-888-880-9539</p>
-              <p className="text-sm text-[#5f5f5f]">(646) 417-8294</p>
+            
+            {/* Contact Information */}
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">Get in touch</h2>
+                
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-orange-100 p-3 rounded-lg">
+                      <Phone className="h-6 w-6 text-orange-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1">Phone</h3>
+                      <p className="text-gray-600">+1 (888) 880-9539</p>
+                      <p className="text-gray-600">+1 (646) 417-8294</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="bg-orange-100 p-3 rounded-lg">
+                      <Mail className="h-6 w-6 text-orange-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1">Email</h3>
+                      <p className="text-gray-600">support@top24headline.com</p>
+                      <p className="text-gray-600">info@top24headline.com</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="bg-orange-100 p-3 rounded-lg">
+                      <Clock className="h-6 w-6 text-orange-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1">Business Hours</h3>
+                      <p className="text-gray-600">Monday - Friday: 8:30 AM - 5:00 PM PST</p>
+                      <p className="text-gray-600">Saturday - Sunday: Closed</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="bg-orange-100 p-3 rounded-lg">
+                      <MapPin className="h-6 w-6 text-orange-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1">Office Locations</h3>
+                      <div className="space-y-3">
+                        <div>
+                          <p className="font-medium text-gray-900">US Office</p>
+                          <p className="text-gray-600">Suite 1400 - 506 Second Avenue</p>
+                          <p className="text-gray-600">Seattle, WA 98104</p>
+                          <p className="text-gray-600">United States</p>
+                        </div>
+                        <div>
+                          <p className="font-medium text-gray-900">Canada Office</p>
+                          <p className="text-gray-600">Suite 203 - 901 West 3rd St.</p>
+                          <p className="text-gray-600">North Vancouver, BC</p>
+                          <p className="text-gray-600">V7P 3P9, Canada</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <div className="border-t border-[#e1e1e1] pt-6">
-              <h2 className="text-lg font-semibold text-[#1d1d1d]">US Address:</h2>
-              <p className="mt-2 text-sm leading-7 text-[#5f5f5f]">
-                Suite 1400 - 506 Second Avenue
-                <br />
-                Seattle, WA
-                <br />
-                98104, USA
-              </p>
-            </div>
-
-            <div className="border-t border-[#e1e1e1] pt-6">
-              <h2 className="text-lg font-semibold text-[#1d1d1d]">Canada Address:</h2>
-              <p className="mt-2 text-sm leading-7 text-[#5f5f5f]">
-                Suite 203 - 901 West 3rd St.
-                <br />
-                North Vancouver, BC
-                <br />
-                V7P 3P9, Canada
-              </p>
-            </div>
-          </aside>
-        </section>
-
-        <section className="mt-12 overflow-hidden rounded-lg bg-[linear-gradient(120deg,#0f6cb0_0%,#1086d4_75%)] px-8 py-9 text-white">
-          <h2 className="max-w-2xl text-4xl font-semibold leading-tight tracking-[-0.03em]">
-            Please take a moment to check out our FAQs
-          </h2>
-          <p className="mt-2 text-base text-white/95">for quick answers to common questions.</p>
-          <Link href="/help" className="mt-6 inline-flex bg-white px-5 py-2 text-sm font-semibold text-[#0f6cb0] hover:bg-[#f3f8fc]">
-            VIEW FAQs
-          </Link>
-        </section>
-      </main>
-
-      <footer className="mt-14 bg-[linear-gradient(180deg,#132f55_0%,#102747_100%)] text-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] lg:px-8">
-          <div>
-            <div className="inline-flex items-center gap-2">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#86d44a] text-sm font-bold text-white">24</span>
-              <span className="text-2xl font-bold">24-7 PressRelease</span>
-            </div>
-            <div className="mt-4 space-y-2 text-sm text-white/85">
-              <p>+1 888-880-9539</p>
-              <p>8:30am to 5:00pm Pacific (Mon - Fri)</p>
-              <p>Suite 1400 - 506 Second Avenue Seattle, WA 98104</p>
-            </div>
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold">Products</h3>
-            <ul className="mt-3 space-y-2 text-sm text-white/80">
-              <li>Pricing Plans</li>
-              <li>Agency Program</li>
-              <li>Writing Services</li>
-              <li>Affiliate Program</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold">Company</h3>
-            <ul className="mt-3 space-y-2 text-sm text-white/80">
-              <li>About Us</li>
-              <li>Who Uses Us</li>
-              <li>Meet The Team</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold">Resources</h3>
-            <ul className="mt-3 space-y-2 text-sm text-white/80">
-              <li>Knowledge Base</li>
-              <li>RSS</li>
-              <li>News Widget</li>
-              <li>For Journalists</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold">Support</h3>
-            <ul className="mt-3 space-y-2 text-sm text-white/80">
-              <li>Contact Us</li>
-              <li>Content Guidelines</li>
-              <li>FAQs</li>
-            </ul>
           </div>
         </div>
-        <div className="border-t border-white/10 py-4">
-          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 text-xs text-white/75 sm:px-6 md:flex-row lg:px-8">
-            <p>2004-2026 24-7 Press Release Newswire. All Rights Reserved.</p>
-            <div className="flex items-center gap-4">
-              <Link href="/privacy">Privacy Policy</Link>
-              <Link href="/terms">Terms of Service</Link>
-              <Link href="/sitemap">Site Map</Link>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Find quick answers to common questions about our press release distribution services
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">How quickly can my release go live?</h3>
+              <p className="text-gray-600">Most press releases are distributed within 24-48 hours after approval.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Can I target specific media categories?</h3>
+              <p className="text-gray-600">Yes, we offer targeted distribution to specific industries and media outlets.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Do you help with editorial review?</h3>
+              <p className="text-gray-600">Our team provides editorial guidance to ensure your release meets industry standards.</p>
             </div>
           </div>
+          
+          <div className="text-center mt-12">
+            <Link 
+              href="/help" 
+              className="inline-flex bg-[#f04b23] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#db3e18] transition-colors duration-200"
+            >
+              View All FAQs
+            </Link>
+          </div>
         </div>
-      </footer>
+      </section>
+      
+      <Footer />
     </div>
   )
 }

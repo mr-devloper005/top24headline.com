@@ -99,7 +99,7 @@ export default async function HomePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-gray-900 text-white">
       <NavbarShell />
       <SchemaJsonLd data={schemaData} />
       <main>
@@ -164,7 +164,8 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+        <section className="bg-white py-14">
+          <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7f7f8f]">Distribution workflow</p>
             <h2 className="mt-3 max-w-md text-3xl font-semibold leading-tight tracking-[-0.03em] text-[#1d1d2c]">
@@ -197,6 +198,7 @@ export default async function HomePage() {
               </div>
             </div>
           </article>
+          </div>
         </section>
 
         <section className="bg-[#f5f5f7] py-14">
@@ -279,9 +281,9 @@ export default async function HomePage() {
             <h2 className="text-center text-2xl font-semibold text-[#1d1d2c]">What communicators say</h2>
             <div className="mt-7 grid gap-4 md:grid-cols-3">
               {[
-                '“Simple interface, clean output, and really fast publishing turnaround.”',
-                '“The formatting quality makes our updates look like true newsroom pieces.”',
-                '“Distribution and reporting now happen in one predictable workflow.”',
+                '"Simple interface, clean output, and really fast publishing turnaround."',
+                '"The formatting quality makes our updates look like true newsroom pieces."',
+                '"Distribution and reporting now happen in one predictable workflow."',
               ].map((quote) => (
                 <article key={quote} className="rounded-xl border border-[#e9e7f2] bg-white p-4 shadow-sm">
                   <p className="text-sm leading-6 text-[#3f3d54]">{quote}</p>

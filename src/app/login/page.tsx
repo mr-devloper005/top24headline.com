@@ -7,51 +7,16 @@ import { getProductKind } from '@/design/factory/get-product-kind'
 import { LOGIN_PAGE_OVERRIDE_ENABLED, LoginPageOverride } from '@/overrides/login-page'
 
 function getLoginConfig(kind: ReturnType<typeof getProductKind>) {
-  if (kind === 'directory') {
-    return {
-      shell: 'bg-[#f8fbff] text-slate-950',
-      panel: 'border border-slate-200 bg-white',
-      side: 'border border-slate-200 bg-slate-50',
-      muted: 'text-slate-600',
-      action: 'bg-slate-950 text-white hover:bg-slate-800',
-      icon: Building2,
-      title: 'Access your business dashboard',
-      body: 'Manage listings, verification details, contact info, and local discovery surfaces from one place.',
-    }
-  }
-  if (kind === 'editorial') {
-    return {
-      shell: 'bg-[#fbf6ee] text-[#241711]',
-      panel: 'border border-[#dcc8b7] bg-[#fffdfa]',
-      side: 'border border-[#e6d6c8] bg-[#fff4e8]',
-      muted: 'text-[#6e5547]',
-      action: 'bg-[#241711] text-[#fff1e2] hover:bg-[#3a241b]',
-      icon: FileText,
-      title: 'Sign in to your publication workspace',
-      body: 'Draft, review, and publish long-form work with the calmer reading system intact.',
-    }
-  }
-  if (kind === 'visual') {
-    return {
-      shell: 'bg-[#07101f] text-white',
-      panel: 'border border-white/10 bg-white/6',
-      side: 'border border-white/10 bg-white/5',
-      muted: 'text-slate-300',
-      action: 'bg-[#8df0c8] text-[#07111f] hover:bg-[#77dfb8]',
-      icon: ImageIcon,
-      title: 'Enter the creator workspace',
-      body: 'Open your visual feed, creator profile, and publishing tools without dropping into a generic admin shell.',
-    }
-  }
+  // Always return dark theme with orange accents to match homepage
   return {
-    shell: 'bg-[#f7f1ea] text-[#261811]',
-    panel: 'border border-[#ddcdbd] bg-[#fffaf4]',
-    side: 'border border-[#e8dbce] bg-[#f3e8db]',
-    muted: 'text-[#71574a]',
-    action: 'bg-[#5b2b3b] text-[#fff0f5] hover:bg-[#74364b]',
-    icon: Bookmark,
-    title: 'Open your curated collections',
-    body: 'Manage saved resources, collection notes, and curator identity from a calmer workspace.',
+    shell: 'bg-gray-900 text-white',
+    panel: 'border border-gray-700 bg-gray-800',
+    side: 'border border-gray-700 bg-gray-800',
+    muted: 'text-gray-300',
+    action: 'bg-orange-500 text-white hover:bg-orange-600',
+    icon: Sparkles,
+    title: 'Welcome back to top24headline',
+    body: 'Sign in to access your press release distribution dashboard and manage your media outreach.',
   }
 }
 

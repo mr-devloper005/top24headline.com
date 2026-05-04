@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Search } from 'lucide-react'
 import { SITE_CONFIG } from '@/lib/site-config'
 
-export const NAVBAR_OVERRIDE_ENABLED = true
+export const NAVBAR_OVERRIDE_ENABLED = false
 
 const utilityLinks = [
   { label: 'About Us', href: '/about' },

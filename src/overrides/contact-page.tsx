@@ -1,7 +1,7 @@
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
 
-export const CONTACT_PAGE_OVERRIDE_ENABLED = true
+export const CONTACT_PAGE_OVERRIDE_ENABLED = false
 
 export function ContactPageOverride() {
   return (

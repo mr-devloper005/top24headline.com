@@ -110,7 +110,7 @@ export async function TaskListPage({
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-orange-500">Latest News</p>
               <h1 className="mt-3 text-5xl font-semibold tracking-[-0.05em] text-white">top24headline newsroom</h1>
               <p className="mt-4 max-w-2xl text-sm leading-8 text-gray-300">
-                Browse press releases in a scan-first newsroom grid with category and date filters. Stay updated with the latest news and announcements.
+                Browse press wires in a scan-first newsroom grid with category and date filters. Stay updated with the latest news and announcements.
               </p>
             </div>
             <form

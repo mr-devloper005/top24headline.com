@@ -8,9 +8,8 @@ import { FOOTER_OVERRIDE_ENABLED, FooterOverride } from '@/overrides/footer'
 const footerLinks = {
   platform: [
     { name: 'Home', href: '/' },
-    { name: 'Press Releases', href: '/updates' },
+    { name: 'Press Wire', href: '/updates' },
     { name: 'Latest News', href: '/latest-news' },
-    { name: 'Pricing', href: '/pricing' },
   ],
   company: [
     { name: 'About', href: '/about' },
@@ -61,7 +60,7 @@ export function Footer() {
                 href={primaryTask.route}
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#FFAF00] px-4 py-2 text-sm font-semibold text-[#0f2340] hover:bg-[#ffc03b]"
               >
-                Submit Press Release
+                Submit Press Wire
                 <ArrowRight className="h-4 w-4" />
               </Link>
             ) : null}
@@ -69,7 +68,7 @@ export function Footer() {
           {(['platform', 'company', 'resources', 'legal'] as const).map((section) => (
             <div key={section}>
               <h3 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-300">
-                {section === 'platform' ? 'Press Release Distribution' : section}
+                {section === 'platform' ? 'Press Wire Distribution' : section}
               </h3>
               <ul className="mt-5 space-y-3 text-sm text-slate-200">
                 {footerLinks[section].map((item: any) => (
@@ -84,7 +83,7 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-12 border-t border-white/15 pt-6 text-center text-sm text-slate-300">
-          &copy; {new Date().getFullYear()} 24-7 Press Release Newswire. All Rights Reserved.
+          &copy; {new Date().getFullYear()} 24-7 Press Wire Newswire. All Rights Reserved.
         </div>
       </div>
     </footer>

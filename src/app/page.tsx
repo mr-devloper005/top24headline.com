@@ -110,9 +110,9 @@ export default async function HomePage() {
           </div>
           <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-20">
             <div className="relative">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Press release distribution</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Press wire distribution</p>
               <h1 className="mt-4 max-w-xl text-4xl font-semibold leading-tight tracking-[-0.04em] sm:text-5xl">
-                Distribute press releases with a newsroom that feels premium, not generic.
+                Distribute press wire with a newsroom that feels premium, not generic.
               </h1>
               <p className="mt-4 max-w-xl text-sm leading-7 text-white/80">
                 Launch coverage-ready stories with clean editorial structure, faster approvals, and reliable syndication across modern media surfaces.
@@ -121,9 +121,7 @@ export default async function HomePage() {
                 <Link href={updatesRoute} className="inline-flex items-center gap-2 bg-[#f04b23] px-8 py-3 text-sm font-semibold text-white hover:bg-[#db3e18]">
                   Start now
                 </Link>
-                <Link href="/pricing" className="inline-flex items-center gap-2 border border-white/40 bg-transparent px-8 py-3 text-sm font-semibold text-white/90 hover:bg-white/10">
-                  View pricing
-                </Link>
+
               </div>
             </div>
             <article className="relative rounded-2xl border border-white/10 bg-black/35 p-4 backdrop-blur-sm">
@@ -239,8 +237,8 @@ export default async function HomePage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-6 flex items-end justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7f7f8f]">Recent press releases</p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-[#1d1d2c]">Recent press releases</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7f7f8f]">Recent press wire</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-[#1d1d2c]">Recent press wire</h2>
             </div>
             <Link href={updatesRoute} className="text-sm font-semibold text-[#f04b23] hover:underline">
               View all

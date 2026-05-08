@@ -17,7 +17,6 @@ export function Navbar() {
   const pathname = usePathname()
   const navLinks = [
     { key: 'newsroom', name: 'Newsroom', href: '/updates' },
-    { key: 'pricing', name: 'Pricing', href: '/pricing' },
     { key: 'about', name: 'About', href: '/about' },
     { key: 'contact', name: 'Contact', href: '/contact' },
   ]

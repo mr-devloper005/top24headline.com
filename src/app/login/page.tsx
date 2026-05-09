@@ -16,7 +16,7 @@ function getLoginConfig(kind: ReturnType<typeof getProductKind>) {
     action: 'bg-orange-500 text-white hover:bg-orange-600',
     icon: Sparkles,
     title: 'Welcome back to top24headline',
-    body: 'Sign in to access your press release distribution dashboard and manage your media outreach.',
+    body: 'Sign in to access your press wire distribution dashboard and manage your media outreach.',
   }
 }
 

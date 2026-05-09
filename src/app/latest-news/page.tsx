@@ -6,7 +6,7 @@ export const generateMetadata = () =>
   buildTaskMetadata('mediaDistribution', {
     path: '/latest-news',
     title: 'Latest News',
-    description: 'Browse the newest press releases and newsroom updates.',
+    description: 'Browse the newest press wires and newsroom updates.',
   })
 
 export default function LatestNewsPage({

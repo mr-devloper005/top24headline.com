@@ -16,7 +16,7 @@ function getRegisterConfig(kind: ReturnType<typeof getProductKind>) {
     action: 'bg-orange-500 text-white hover:bg-orange-600',
     icon: Sparkles,
     title: 'Create your top24headline account',
-    body: 'Join our press release distribution platform and start reaching thousands of media outlets with your news.',
+    body: 'Join our press wire distribution platform and start reaching thousands of media outlets with your news.',
   }
 }
 
@@ -43,7 +43,7 @@ export default function RegisterPage() {
               <h3 className="text-lg font-semibold text-white">Why choose top24headline?</h3>
               <div className="space-y-3">
                 {[
-                  'Global press release distribution to thousands of media outlets',
+                  'Global press wire distribution to thousands of media outlets',
                   'Professional platform with advanced analytics and reporting',
                   'Dedicated support for PR professionals and businesses'
                 ].map((item) => (
@@ -72,7 +72,7 @@ export default function RegisterPage() {
               </div>
               <div>
                 <label className="mb-2 block text-sm font-semibold text-gray-300">What are you creating or publishing?</label>
-                <input className="h-12 w-full rounded-xl border border-gray-600 bg-gray-700 px-4 text-sm text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none" placeholder="Press releases, news, announcements..." />
+                <input className="h-12 w-full rounded-xl border border-gray-600 bg-gray-700 px-4 text-sm text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none" placeholder="Press wires, news, announcements..." />
               </div>
               <button type="submit" className={`inline-flex h-12 items-center justify-center rounded-full px-8 text-sm font-semibold ${config.action} shadow-lg hover:shadow-xl transition-all duration-200`}>Create account</button>
             </form>

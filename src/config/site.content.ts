@@ -2,16 +2,16 @@ import type { TaskKey } from '@/lib/site-config'
 
 export const siteContent = {
   navbar: {
-    tagline: 'Press release media desk',
+    tagline: 'Press wire media desk',
   },
   footer: {
     tagline: 'Distribution-ready newsroom platform',
   },
   hero: {
     badge: 'Media Distribution',
-    title: ['Press release delivery with modern newsroom design.'],
+    title: ['Press wire delivery with modern newsroom design.'],
     description:
-      'A media-first publishing surface built for high-visibility announcements, campaign updates, and business press releases.',
+      'A media-first publishing surface built for high-visibility announcements, campaign updates, and business press wires.',
     primaryCta: {
       label: 'Browse latest releases',
       href: '/updates',
@@ -25,17 +25,17 @@ export const siteContent = {
     featureCardBadge: 'coverage note',
     featureCardTitle: 'Latest releases appear instantly across the newsroom.',
     featureCardDescription:
-      'The homepage is tuned for quick scanning so press releases stay visible and easy to access.',
+      'The homepage is tuned for quick scanning so press wires stay visible and easy to access.',
   },
   home: {
     metadata: {
       title: 'Top24Headline media distribution newsroom',
       description:
-        'Publish and discover press releases, distribution plans, and media-ready updates through a modern SaaS newsroom.',
+        'Publish and discover press wires, distribution plans, and media-ready updates through a modern SaaS newsroom.',
       openGraphTitle: 'Top24Headline media distribution newsroom',
       openGraphDescription:
-        'Send your news to digital publishers instantly with clean press-release workflows and readable editorial pages.',
-      keywords: ['press release distribution', 'media newsroom', 'digital publishers', 'latest press releases'],
+        'Send your news to digital publishers instantly with clean press-wire workflows and readable editorial pages.',
+      keywords: ['press wire distribution', 'media newsroom', 'digital publishers', 'latest press wires'],
     },
     introBadge: 'Platform',
     introTitle: 'A focused newsroom product for growth-stage media distribution.',
@@ -75,7 +75,7 @@ export const siteContent = {
     },
   },
   taskSectionHeading: 'Latest releases',
-  taskSectionDescriptionSuffix: 'Read the newest published press releases.',
+  taskSectionDescriptionSuffix: 'Read the newest published press wires.',
 } as const
 
 export const taskPageMetadata: Record<Exclude<TaskKey, 'comment' | 'org' | 'social'>, { title: string; description: string }> = {
@@ -108,8 +108,8 @@ export const taskPageMetadata: Record<Exclude<TaskKey, 'comment' | 'org' | 'soci
     description: 'Open PDFs and downloadable files.',
   },
   mediaDistribution: {
-    title: 'Latest press releases',
-    description: 'Explore published press releases, brand stories, and newsroom updates.',
+    title: 'Latest press wire',
+    description: 'Explore published press wires, brand stories, and newsroom updates.',
   },
 }
 
@@ -128,7 +128,7 @@ export const taskIntroCopy: Record<
   comment: { title: 'Comments', paragraphs: ['Commentary and response posts.'], links: [{ label: 'Home', href: '/' }] },
   org: { title: 'Organizations', paragraphs: ['Organization pages and entities.'], links: [{ label: 'Home', href: '/' }] },
   mediaDistribution: {
-    title: 'Latest press releases',
+    title: 'Latest press wire',
     paragraphs: [
       'This newsroom archive is built for media distribution teams publishing high-visibility updates.',
       'Use filters and search to quickly scan headlines, open full stories, and share release links.',

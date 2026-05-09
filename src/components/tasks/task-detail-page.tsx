@@ -259,7 +259,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
           <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
-          Back to Press Releases
+          Back to Press Wire
         </Link>
 
         <div
@@ -275,7 +275,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                 <div className="mb-8">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-gradient-to-r from-orange-500 to-orange-600 text-white">
-                      Press Release
+                      Press Wire
                     </span>
                     <Badge variant="secondary" className="inline-flex items-center gap-1 bg-orange-50 text-orange-700 border-orange-200">
                       <Tag className="h-3.5 w-3.5" />
@@ -342,7 +342,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                 {/* Share Section */}
                 <div className="border-t border-gray-700 pt-8">
                   <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-semibold text-white">Share this press release</h3>
+                    <h3 className="text-lg font-semibold text-white">Share this press wire</h3>
                   </div>
                   <div className="flex flex-wrap gap-3">
                     <Link href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}`} target="_blank" className="inline-flex items-center gap-2 rounded-full bg-gray-800 text-white px-4 py-2 text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
@@ -536,7 +536,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
             <>
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-2xl font-bold text-white">
-                More Press Releases in {category}
+                More Press Wire in {category}
               </h2>
               {taskConfig?.route && (
                 <Link

@@ -6,7 +6,7 @@ import { ContentImage } from '@/components/shared/content-image'
 import { SITE_CONFIG } from '@/lib/site-config'
 
 const metrics = [
-  { label: 'Press Releases Distributed', value: '52K+' },
+  { label: 'Press Wires Distributed', value: '52K+' },
   { label: 'Publisher Network Reach', value: '3.2K+' },
   { label: 'Average Turnaround', value: '< 24 hrs' },
 ]
@@ -57,7 +57,7 @@ export default function AboutPage() {
               We help brands scale media visibility through reliable press distribution
               </h1>
               <p className="mt-5 text-sm leading-8 text-white/85">
-                {SITE_CONFIG.name} is a media press release platform designed for modern businesses that need fast,
+                {SITE_CONFIG.name} is a media press wire platform designed for modern businesses that need fast,
                 professional, and high-reach distribution. Our mission is simple: make quality media publication
                 accessible for every growing brand.
               </p>
@@ -65,9 +65,7 @@ export default function AboutPage() {
                 <Link href="/contact" className="inline-flex bg-[#f04b23] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#db3e18]">
                   Talk to Us
                 </Link>
-                <Link href="/pricing" className="inline-flex border border-white/35 bg-transparent px-6 py-2.5 text-sm font-semibold text-white hover:bg-white/10">
-                  View Pricing
-                </Link>
+
               </div>
             </div>
             <div className="relative min-h-[320px] overflow-hidden rounded-2xl border border-white/20">

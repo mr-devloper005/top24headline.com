@@ -31,7 +31,7 @@ const footerLinks = {
   ],
 }
 
-export function Footer() {
+export async function Footer() {
   if (FOOTER_OVERRIDE_ENABLED) {
     return <FooterOverride />
   }
@@ -46,13 +46,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.25fr_0.85fr_0.85fr_0.85fr_0.85fr]">
           <div>
             <Link href="/" className="flex items-center gap-3">
-              <div className="h-11 w-11 overflow-hidden rounded-full border border-white/20 bg-white/10 p-1 shadow-sm">
-                <img src="/favicon.png?v=20260401" alt={`${SITE_CONFIG.name} logo`} width="44" height="44" className="h-full w-full object-contain" />
-              </div>
-              <div>
-                <span className="block text-lg font-semibold">24-7 PressRelease</span>
-                <span className="text-xs uppercase tracking-[0.22em] text-slate-300">{siteContent.footer.tagline}</span>
-              </div>
+              <img src="/logo.png" alt={`${SITE_CONFIG.name} logo`} width="140" height="40" className="h-10 w-auto object-contain" />
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-7 text-slate-300">{SITE_CONFIG.description}</p>
             {primaryTask ? (

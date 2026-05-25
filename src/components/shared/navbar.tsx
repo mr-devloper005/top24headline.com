@@ -39,9 +39,8 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo Section */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex flex-col items-start leading-tight">
-              <span className="text-2xl font-bold tracking-tight text-white sm:text-3xl">top24headline</span>
-              <span className="text-xs font-semibold uppercase tracking-widest text-gray-300 mt-1">MEDIA DISTRIBUTION DESK</span>
+            <Link href="/" className="flex items-center">
+              <img src="/logo.png" alt="top24headline" className="h-10 w-auto" />
             </Link>
           </div>
 
